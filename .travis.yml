@@ -4,7 +4,7 @@ sudo: false
 
 env:
   matrix:
-    - ANDROID_TARGET=android-21 ANDROID_ABI=armeabi-v7a
+    - ANDROID_TARGET=android-26 ANDROID_ABI=armeabi-v7a
   global:   #Optional
     - ADB_INSTALL_TIMEOUT=10    #Time out to 10 mins
 
@@ -14,7 +14,7 @@ android:
         - platform-tools-27.0.1
         - tools
         - build-tools-26.0.2    #Build tool version
-        - android-21            #targate api version
+        - android-26            #targate api version
 
         # Additional components
         - extra-google-google_play_services
