@@ -13,7 +13,7 @@ android:
     components:
         - platform-tools
         - tools
-        - build-tools-25.0.0    #Build tool version
+        - build-tools-27.0.3    #Build tool version
         - android-21            #targate api version
 
         # Additional components
