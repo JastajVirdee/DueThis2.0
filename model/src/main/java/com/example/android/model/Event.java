@@ -1,12 +1,12 @@
-package com.example.android.model;/*PLEASE DO NOT EDIT THIS CODE*/
+/*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.27.0.3781.8b4a64e modeling language!*/
 
 
 import java.sql.Date;
 import java.sql.Time;
 
-// line 22 "model.ump"
-// line 64 "model.ump"
+// line 23 "model.ump"
+// line 67 "model.ump"
 public class Event
 {
 

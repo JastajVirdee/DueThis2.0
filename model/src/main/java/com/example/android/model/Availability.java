@@ -1,10 +1,10 @@
-package com.example.android.model;/*PLEASE DO NOT EDIT THIS CODE*/
+/*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.27.0.3781.8b4a64e modeling language!*/
 
 
 
-// line 45 "model.ump"
-// line 84 "model.ump"
+// line 46 "model.ump"
+// line 88 "model.ump"
 public class Availability
 {
 

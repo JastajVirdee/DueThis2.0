@@ -1,11 +1,11 @@
-package com.example.android.model;/*PLEASE DO NOT EDIT THIS CODE*/
+/*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.27.0.3781.8b4a64e modeling language!*/
 
 
 import java.util.*;
 
-// line 40 "model.ump"
-// line 79 "model.ump"
+// line 41 "model.ump"
+// line 83 "model.ump"
 public class ExperiencedStudent extends StudentRole
 {
 
