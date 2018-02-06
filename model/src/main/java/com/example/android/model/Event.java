@@ -1,11 +1,12 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.27.0.3779.deff010 modeling language!*/
+package com.example.android.model;/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.27.0.3781.8b4a64e modeling language!*/
 
 
 import java.sql.Date;
+import java.sql.Time;
 
-// line 20 "model.ump"
-// line 66 "model.ump"
+// line 22 "model.ump"
+// line 64 "model.ump"
 public class Event
 {
 
@@ -17,7 +18,7 @@ public class Event
   private String id;
   private String name;
   private Date date;
-  private int duration;
+  private Time duration;
 
   //Event Associations
   private Student student;
@@ -26,7 +27,7 @@ public class Event
   // CONSTRUCTOR
   //------------------------
 
-  public Event(String aId, String aName, Date aDate, int aDuration, Student aStudent)
+  public Event(String aId, String aName, Date aDate, Time aDuration, Student aStudent)
   {
     id = aId;
     name = aName;
@@ -67,7 +68,7 @@ public class Event
     return wasSet;
   }
 
-  public boolean setDuration(int aDuration)
+  public boolean setDuration(Time aDuration)
   {
     boolean wasSet = false;
     duration = aDuration;
@@ -90,7 +91,7 @@ public class Event
     return date;
   }
 
-  public int getDuration()
+  public Time getDuration()
   {
     return duration;
   }
@@ -134,9 +135,9 @@ public class Event
   {
     return super.toString() + "["+
             "id" + ":" + getId()+ "," +
-            "name" + ":" + getName()+ "," +
-            "duration" + ":" + getDuration()+ "]" + System.getProperties().getProperty("line.separator") +
+            "name" + ":" + getName()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "date" + "=" + (getDate() != null ? !getDate().equals(this)  ? getDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "duration" + "=" + (getDuration() != null ? !getDuration().equals(this)  ? getDuration().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "student = "+(getStudent()!=null?Integer.toHexString(System.identityHashCode(getStudent())):"null");
   }
 }

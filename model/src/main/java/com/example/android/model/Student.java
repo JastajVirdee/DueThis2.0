@@ -1,13 +1,13 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.27.0.3779.deff010 modeling language!*/
+package com.example.android.model;/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.27.0.3781.8b4a64e modeling language!*/
 
 
-import java.sql.Time;
 import java.util.*;
 import java.sql.Date;
+import java.sql.Time;
 
-// line 2 "model.ump"
-// line 52 "model.ump"
+// line 16 "model.ump"
+// line 59 "model.ump"
 public class Student
 {
 
@@ -17,7 +17,6 @@ public class Student
 
   //Student Attributes
   private String id;
-  private Time hoursAvailable;
 
   //Student Associations
   private List<StudentRole> studentRoles;
@@ -28,10 +27,9 @@ public class Student
   // CONSTRUCTOR
   //------------------------
 
-  public Student(String aId, Time aHoursAvailable)
+  public Student(String aId)
   {
     id = aId;
-    hoursAvailable = aHoursAvailable;
     studentRoles = new ArrayList<StudentRole>();
     assignments = new ArrayList<Assignment>();
     events = new ArrayList<Event>();
@@ -49,22 +47,9 @@ public class Student
     return wasSet;
   }
 
-  public boolean setHoursAvailable(Time aHoursAvailable)
-  {
-    boolean wasSet = false;
-    hoursAvailable = aHoursAvailable;
-    wasSet = true;
-    return wasSet;
-  }
-
   public String getId()
   {
     return id;
-  }
-
-  public Time getHoursAvailable()
-  {
-    return hoursAvailable;
   }
   /* Code from template association_GetMany */
   public StudentRole getStudentRole(int index)
@@ -234,9 +219,9 @@ public class Student
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Assignment addAssignment(String aId, String aName, String aCourse, Date aDueDate, float aGradeWeight, Time aCompletionTime)
+  public Assignment addAssignment(String aId, String aName, String aCourse, Date aDueDate, float aGradeWeight, Time aCompletitionTime)
   {
-    return new Assignment(aId, aName, aCourse, aDueDate, aGradeWeight, aCompletionTime, this);
+    return new Assignment(aId, aName, aCourse, aDueDate, aGradeWeight, aCompletitionTime, this);
   }
 
   public boolean addAssignment(Assignment aAssignment)
@@ -306,7 +291,7 @@ public class Student
     return 0;
   }
   /* Code from template association_AddManyToOne */
-  public Event addEvent(String aId, String aName, Date aDate, int aDuration)
+  public Event addEvent(String aId, String aName, Date aDate, Time aDuration)
   {
     return new Event(aId, aName, aDate, aDuration, this);
   }
@@ -396,7 +381,6 @@ public class Student
   public String toString()
   {
     return super.toString() + "["+
-            "id" + ":" + getId()+ "]" + System.getProperties().getProperty("line.separator") +
-            "  " + "hoursAvailable" + "=" + (getHoursAvailable() != null ? !getHoursAvailable().equals(this)  ? getHoursAvailable().toString().replaceAll("  ","    ") : "this" : "null");
+            "id" + ":" + getId()+ "]";
   }
 }

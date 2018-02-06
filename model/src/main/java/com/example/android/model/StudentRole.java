@@ -1,10 +1,10 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.27.0.3779.deff010 modeling language!*/
+package com.example.android.model;/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.27.0.3781.8b4a64e modeling language!*/
 
 
 
-// line 42 "model.ump"
-// line 83 "model.ump"
+// line 31 "model.ump"
+// line 69 "model.ump"
 public class StudentRole
 {
 

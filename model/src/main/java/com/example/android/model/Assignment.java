@@ -1,12 +1,12 @@
-/*PLEASE DO NOT EDIT THIS CODE*/
-/*This code was generated using the UMPLE 1.27.0.3779.deff010 modeling language!*/
+package com.example.android.model;/*PLEASE DO NOT EDIT THIS CODE*/
+/*This code was generated using the UMPLE 1.27.0.3781.8b4a64e modeling language!*/
 
 
 import java.sql.Date;
 import java.sql.Time;
 
-// line 9 "model.ump"
-// line 60 "model.ump"
+// line 5 "model.ump"
+// line 54 "model.ump"
 public class Assignment
 {
 
@@ -20,7 +20,7 @@ public class Assignment
   private String course;
   private Date dueDate;
   private float gradeWeight;
-  private Time completionTime;
+  private Time completitionTime;
 
   //Assignment Associations
   private Student student;
@@ -29,14 +29,14 @@ public class Assignment
   // CONSTRUCTOR
   //------------------------
 
-  public Assignment(String aId, String aName, String aCourse, Date aDueDate, float aGradeWeight, Time aCompletionTime, Student aStudent)
+  public Assignment(String aId, String aName, String aCourse, Date aDueDate, float aGradeWeight, Time aCompletitionTime, Student aStudent)
   {
     id = aId;
     name = aName;
     course = aCourse;
     dueDate = aDueDate;
     gradeWeight = aGradeWeight;
-    completionTime = aCompletionTime;
+    completitionTime = aCompletitionTime;
     boolean didAddStudent = setStudent(aStudent);
     if (!didAddStudent)
     {
@@ -88,10 +88,10 @@ public class Assignment
     return wasSet;
   }
 
-  public boolean setCompletionTime(Time aCompletionTime)
+  public boolean setCompletitionTime(Time aCompletitionTime)
   {
     boolean wasSet = false;
-    completionTime = aCompletionTime;
+    completitionTime = aCompletitionTime;
     wasSet = true;
     return wasSet;
   }
@@ -121,9 +121,9 @@ public class Assignment
     return gradeWeight;
   }
 
-  public Time getCompletionTime()
+  public Time getCompletitionTime()
   {
-    return completionTime;
+    return completitionTime;
   }
   /* Code from template association_GetOne */
   public Student getStudent()
@@ -169,7 +169,7 @@ public class Assignment
             "course" + ":" + getCourse()+ "," +
             "gradeWeight" + ":" + getGradeWeight()+ "]" + System.getProperties().getProperty("line.separator") +
             "  " + "dueDate" + "=" + (getDueDate() != null ? !getDueDate().equals(this)  ? getDueDate().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
-            "  " + "completionTime" + "=" + (getCompletionTime() != null ? !getCompletionTime().equals(this)  ? getCompletionTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
+            "  " + "completitionTime" + "=" + (getCompletitionTime() != null ? !getCompletitionTime().equals(this)  ? getCompletitionTime().toString().replaceAll("  ","    ") : "this" : "null") + System.getProperties().getProperty("line.separator") +
             "  " + "student = "+(getStudent()!=null?Integer.toHexString(System.identityHashCode(getStudent())):"null");
   }
 }
