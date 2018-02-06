@@ -1,4 +1,4 @@
-package com.example.android.model;/*PLEASE DO NOT EDIT THIS CODE*/
+/*PLEASE DO NOT EDIT THIS CODE*/
 /*This code was generated using the UMPLE 1.27.0.3781.8b4a64e modeling language!*/
 
 
@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.sql.Time;
 
 // line 16 "model.ump"
-// line 59 "model.ump"
+// line 61 "model.ump"
 public class Student
 {
 
@@ -17,6 +17,7 @@ public class Student
 
   //Student Attributes
   private String id;
+  private String name;
 
   //Student Associations
   private List<StudentRole> studentRoles;
@@ -27,9 +28,10 @@ public class Student
   // CONSTRUCTOR
   //------------------------
 
-  public Student(String aId)
+  public Student(String aId, String aName)
   {
     id = aId;
+    name = aName;
     studentRoles = new ArrayList<StudentRole>();
     assignments = new ArrayList<Assignment>();
     events = new ArrayList<Event>();
@@ -47,9 +49,22 @@ public class Student
     return wasSet;
   }
 
+  public boolean setName(String aName)
+  {
+    boolean wasSet = false;
+    name = aName;
+    wasSet = true;
+    return wasSet;
+  }
+
   public String getId()
   {
     return id;
+  }
+
+  public String getName()
+  {
+    return name;
   }
   /* Code from template association_GetMany */
   public StudentRole getStudentRole(int index)
@@ -381,6 +396,7 @@ public class Student
   public String toString()
   {
     return super.toString() + "["+
-            "id" + ":" + getId()+ "]";
+            "id" + ":" + getId()+ "," +
+            "name" + ":" + getName()+ "]";
   }
 }
