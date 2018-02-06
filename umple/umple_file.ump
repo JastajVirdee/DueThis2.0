@@ -1,4 +1,4 @@
-enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday } 
+enum Day { Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
 
 
 class Assignment
@@ -15,7 +15,8 @@ class Assignment
 class Student
 {
   id;
-  1 -- * StudentRole;
+  name;
+1 -- * StudentRole;
 }
 
 class Event
@@ -47,4 +48,3 @@ class Availability
   Integer hoursAvailable;
   7 -- 1 ExperiencedStudent;
 }
-
