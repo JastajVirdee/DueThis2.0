@@ -96,4 +96,20 @@
         tools:layout_editor_absoluteX="26dp"
         tools:layout_editor_absoluteY="125dp" />
 
+    <Button
+        android:id="@+id/eventBackButton"
+        android:layout_width="158dp"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="446dp" />
+
+    <Button
+        android:id="@+id/eventSubmitButton"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        tools:layout_editor_absoluteX="203dp"
+        tools:layout_editor_absoluteY="446dp" />
+
 </android.support.constraint.ConstraintLayout>
