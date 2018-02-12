@@ -4,61 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.teamduethis.ui_sprint1.MainActivity">
+    tools:context="duethis.duethis.MainActivity">
 
-    <EditText
-        android:id="@+id/assignmentName"
-        android:layout_width="359dp"
-        android:layout_height="47dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="172dp"
-        android:ems="10"
-        android:hint="Weight"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText5"
-        android:layout_width="346dp"
+    <Button
+        android:id="@+id/mainAddEventButton"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:hint="Assignment name"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginEnd="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="12dp"
+        android:text="Add Event"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainAddAssignmentButton" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="152dp"
-        android:layout_height="43dp"
-        android:layout_marginLeft="216dp"
-        android:layout_marginTop="244dp"
-        android:onClick="showTimePickerDialog"
-        android:text="Due Time"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="186dp"
-        android:layout_height="43dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="244dp"
-        android:onClick="showDatePickerDialog"
-        android:text="Due Date"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="353dp"
-        android:layout_height="43dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="100dp"
-        android:text="Course"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/mainAddAssignmentButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="27dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="16dp"
+        android:text="Add Assignment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

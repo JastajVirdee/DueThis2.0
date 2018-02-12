@@ -4,16 +4,16 @@ import android.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-
 //import duethis.duethis.R;
 
-public class EventActivity extends AppCompatActivity {
+
+public class AssignmentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_event);
-        getSupportActionBar().setTitle("Create Event");
+        setContentView(R.layout.activity_assignement);
+        getSupportActionBar().setTitle("Add Assignment");
     }
 
     public void showDatePickerDialog(View v) {
@@ -25,4 +25,8 @@ public class EventActivity extends AppCompatActivity {
         DialogFragment newFragment = new TimePicker();
         newFragment.show(getFragmentManager(), "timePicker");
     }
+
+
 }
+
+

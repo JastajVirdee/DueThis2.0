@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import duethis.duethis.R;
+//import duethis.duethis.R;
 
 public class ClassActivity extends AppCompatActivity {
 
