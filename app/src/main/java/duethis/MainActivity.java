@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Home");
 
         // Click Add Assignment
         Button addAssignmentButton = findViewById(R.id.mainAddAssignmentButton);
@@ -40,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, HoursAvailableActivity.class));
             }
         });
+    }
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePicker();
+        newFragment.show(getFragmentManager(), "datePicker");
     }
 
 
