@@ -1,5 +1,6 @@
 package duethis;
 
+import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,13 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import java.util.UUID;
-
-import model.ExperiencedStudent;
 import model.Student;
-import model.StudentRole;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener {
 
     public static Student student;
 
@@ -70,5 +67,14 @@ public class MainActivity extends AppCompatActivity {
         newFragment.show(getFragmentManager(), "datePicker");
     }
 
-
+    @Override
+    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
+        Intent intent = new Intent(MainActivity.this, ViewAssignmentsByDay.class);
+        Bundle parameters =  new Bundle();
+        parameters.putInt("year", year);
+        parameters.putInt("month", month);
+        parameters.putInt("day", day);
+        intent.putExtras(parameters);
+        startActivity(intent);
+    }
 }
