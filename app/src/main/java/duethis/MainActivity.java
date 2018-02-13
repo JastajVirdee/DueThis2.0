@@ -24,14 +24,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("Home");
 
 
-        //Global Student
-        String uuid = UUID.randomUUID().toString();
-        student = new Student(uuid, "Tim");
-        StudentRole role = new ExperiencedStudent(student);
-        student.addStudentRole(role);
-
-
-
 
         // Click Add Assignment
         Button addAssignmentButton = findViewById(R.id.mainAddAssignmentButton);

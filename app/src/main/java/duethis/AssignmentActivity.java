@@ -36,6 +36,12 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
         setContentView(R.layout.activity_assignement);
         getSupportActionBar().setTitle("Add Assignment");
 
+        // used to get global student variable.
+        final DueThisApplication application = (DueThisApplication) this.getApplication();
+
+
+
+
         // Click Back
         Button backButton = findViewById(R.id.assignmentBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -68,11 +74,7 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 java.sql.Date date = new java.sql.Date(c.getTimeInMillis());
 
                 // getting student from global variable student.
-                Student student = MainActivity.student;
-
-
-
-
+                Student student = application.student;
 
                 // Submit assignment call to backend
                 try {

@@ -6,42 +6,32 @@
     android:layout_height="match_parent"
     tools:context="duethis.ExperiencedNoviceActivity">
 
-    <RadioButton
-        android:id="@+id/experiencedButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="Experienced"
-        android:text="Experienced"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="34dp"
-        tools:text="Experienced" />
 
-    <RadioButton
-        android:id="@+id/noviceButton"
-        android:layout_width="wrap_content"
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_experience_group"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:contentDescription="Novice"
-        android:text="Novice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/experiencedButton"
-        tools:text="Novice" />
+        android:orientation="vertical">
+        <RadioButton android:id="@+id/radio_experienced"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Experienced"
+            android:onClick="onRadioButtonClicked"/>
+        <RadioButton android:id="@+id/radio_novice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Novice"
+            android:onClick="onRadioButtonClicked"/>
+    </RadioGroup>
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/experienceStatus"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:contentDescription="back"
-        android:text="Back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.091"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/radio_experience_group"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noviceButton"
-        tools:text="back" />
+        />
 
 </android.support.constraint.ConstraintLayout>
