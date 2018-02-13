@@ -18,7 +18,8 @@
         <activity android:name=".ClassActivity" />
         <activity android:name=".EventActivity" />
         <activity android:name=".AssignmentActivity" />
-        <activity android:name=".HoursAvailableActivity"></activity>
+        <activity android:name=".HoursAvailableActivity" />
+        <activity android:name=".ExperiencedNoviceActivity"></activity>
     </application>
 
 </manifest>

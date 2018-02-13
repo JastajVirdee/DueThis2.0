@@ -11,15 +11,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.util.Log;
 
 import java.time.Duration;
 import java.util.Calendar;
+import java.util.UUID;
 
 import controller.DueThisController;
 import controller.InvalidInputException;
 import model.Student;
 
-//import duethis.duethis.R;
+import duethis.MainActivity;
 
 
 public class AssignmentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -65,15 +67,17 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 Duration duration = Duration.ofHours(estimatedTimeOfCompletion);
                 java.sql.Date date = new java.sql.Date(c.getTimeInMillis());
 
-                // TODO: replace test student by real student from backend
-                // Mock student
-                Student student = new Student("testStudentID", "testStudentName");
-                // Can't mock student role yet
-                student.addStudentRole();
+                // getting student from global variable student.
+                Student student = MainActivity.student;
+
+
+
+
 
                 // Submit assignment call to backend
                 try {
-                    controller.createAssignment(name, course, date, weight, duration, student);
+                    boolean result = controller.createAssignment(name, course, date, weight, duration, student);
+
                 } catch (InvalidInputException e) {
                     e.printStackTrace();
                 }

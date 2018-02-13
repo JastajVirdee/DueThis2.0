@@ -7,13 +7,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.UUID;
+
+import model.ExperiencedStudent;
+import model.Student;
+import model.StudentRole;
+
 public class MainActivity extends AppCompatActivity {
+
+    public static Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Home");
+
+
+        //Global Student
+        String uuid = UUID.randomUUID().toString();
+        student = new Student(uuid, "Tim");
+        StudentRole role = new ExperiencedStudent(student);
+        student.addStudentRole(role);
+
+
+
 
         // Click Add Assignment
         Button addAssignmentButton = findViewById(R.id.mainAddAssignmentButton);
@@ -41,6 +59,18 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, HoursAvailableActivity.class));
             }
         });
+
+
+        //ExperiencedNovice Selection
+        Button setExperienceButton = findViewById(R.id.mainSetExperience);
+        setExperienceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ExperiencedNoviceActivity.class));
+            }
+        });
+
+
     }
 
     public void showDatePickerDialog(View v) {
