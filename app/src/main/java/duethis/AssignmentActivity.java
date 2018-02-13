@@ -2,6 +2,7 @@ package duethis;
 
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +22,7 @@ import model.Student;
 //import duethis.duethis.R;
 
 
-public class AssignmentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class AssignmentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     Calendar c = Calendar.getInstance();
     DueThisController controller = new DueThisController();
@@ -67,6 +68,7 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 // TODO: replace test student by real student from backend
                 // Mock student
                 Student student = new Student("testStudentID", "testStudentName");
+                // Can't mock student role yet
                 student.addStudentRole();
 
                 // Submit assignment call to backend
@@ -93,7 +95,15 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day){
-        c.set(year, month, day, 0, 0);
+        c.set(Calendar.YEAR, year);
+        c.set(Calendar.MONTH, month);
+        c.set(Calendar.DATE, day);
+    }
+
+    @Override
+    public void onTimeSet(android.widget.TimePicker timePicker, int hour, int minute) {
+        c.set(Calendar.HOUR_OF_DAY, hour);
+        c.set(Calendar.MINUTE, hour);
     }
 }
 
