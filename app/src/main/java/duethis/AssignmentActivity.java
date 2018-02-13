@@ -79,7 +79,6 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 // Submit assignment call to backend
                 try {
                     boolean result = controller.createAssignment(name, course, date, weight, duration, student);
-
                 } catch (InvalidInputException e) {
                     e.printStackTrace();
                 }
