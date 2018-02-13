@@ -44,30 +44,29 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
 
         // Click Submit
         Button submitButton = findViewById(R.id.assignmentSubmitButton);
-        final EditText nameField = (EditText) findViewById(R.id.assignmentNameTextfield);
-        String name = nameField.getText().toString();
-
-        final EditText weightField = (EditText) findViewById(R.id.assignmentWeightTextfield);
-        float weight = Float.parseFloat(weightField.getText().toString());
-
-        final EditText estimatedTimeOfCompletionField = (EditText) findViewById(R.id.assignmentEstimatedTimeTextfield);
-        long estimatedTimeOfCompletion = Long.parseLong(estimatedTimeOfCompletionField.getText().toString());
-
-        Duration duration = Duration.ofHours(estimatedTimeOfCompletion);
-        java.sql.Date date = java.sql.Date.valueOf(c.getTime().toString());
-
-        Student student = new Student("testStudentID", "testStudentName");
-
-        try {
-            controller.createAssignment(name, "fakeCourseName", date, weight, duration, student);
-        } catch (InvalidInputException e) {
-            e.printStackTrace();
-        }
-
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final EditText nameField = (EditText) findViewById(R.id.assignmentNameTextfield);
+                String name = nameField.getText().toString();
+
+                final EditText weightField = (EditText) findViewById(R.id.assignmentWeightTextfield);
+                float weight = Float.parseFloat(weightField.getText().toString());
+
+                final EditText estimatedTimeOfCompletionField = (EditText) findViewById(R.id.assignmentEstimatedTimeTextfield);
+                long estimatedTimeOfCompletion = Long.parseLong(estimatedTimeOfCompletionField.getText().toString());
+
+                Duration duration = Duration.ofHours(estimatedTimeOfCompletion);
+                java.sql.Date date = new java.sql.Date(c.getTimeInMillis());
+
+                Student student = new Student("testStudentID", "testStudentName");
+                student.addStudentRole();
+                try {
+                    controller.createAssignment(name, "testCourseName", date, weight, duration, student);
+                } catch (InvalidInputException e) {
+                    e.printStackTrace();
+                }
                 startActivity(new Intent(AssignmentActivity.this, MainActivity.class));
             }
         });
@@ -86,7 +85,7 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day){
-        c.set(year, month-1, day, 0, 0);
+        c.set(year, month, day, 0, 0);
     }
 }
 
