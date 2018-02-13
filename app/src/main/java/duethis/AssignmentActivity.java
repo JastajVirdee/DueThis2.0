@@ -48,8 +48,12 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Get fields from assignment form
                 final EditText nameField = (EditText) findViewById(R.id.assignmentNameTextfield);
                 String name = nameField.getText().toString();
+
+                final EditText courseField = (EditText) findViewById(R.id.assignmentCourseTextfield);
+                String course = courseField.getText().toString();
 
                 final EditText weightField = (EditText) findViewById(R.id.assignmentWeightTextfield);
                 float weight = Float.parseFloat(weightField.getText().toString());
@@ -60,10 +64,14 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 Duration duration = Duration.ofHours(estimatedTimeOfCompletion);
                 java.sql.Date date = new java.sql.Date(c.getTimeInMillis());
 
+                // TODO: replace test student by real student from backend
+                // Mock student
                 Student student = new Student("testStudentID", "testStudentName");
                 student.addStudentRole();
+
+                // Submit assignment call to backend
                 try {
-                    controller.createAssignment(name, "testCourseName", date, weight, duration, student);
+                    controller.createAssignment(name, course, date, weight, duration, student);
                 } catch (InvalidInputException e) {
                     e.printStackTrace();
                 }

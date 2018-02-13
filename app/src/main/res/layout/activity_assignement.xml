@@ -6,21 +6,10 @@
     android:layout_height="match_parent"
     tools:context="com.teamduethis.ui_sprint1.MainActivity">
 
-    <EditText
-        android:id="@+id/assignmentWeightTextfield"
-        android:layout_width="352dp"
-        android:layout_height="47dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="172dp"
-        android:ems="10"
-        android:hint="Weight"
-        android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/assignmentNameTextfield"
-        android:layout_width="346dp"
+        android:layout_width="320dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
@@ -30,11 +19,35 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/assignmentCourseTextfield"
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="160dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="100dp"
+        android:hint="Course"
+        app:layout_constraintBottom_toTopOf="@+id/assignmentEstimatedTimeTextfield"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/assignmentWeightTextfield"
+        android:layout_width="320dp"
+        android:layout_height="47dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="172dp"
+        android:ems="10"
+        android:hint="Weight"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/assignmentDueTimeButton"
         android:layout_width="152dp"
         android:layout_height="43dp"
-        android:layout_marginLeft="216dp"
+        android:layout_marginLeft="180dp"
         android:layout_marginTop="244dp"
         android:onClick="showTimePickerDialog"
         android:text="Due Time"
@@ -43,7 +56,7 @@
 
     <Button
         android:id="@+id/assignmentDueDateButton"
-        android:layout_width="186dp"
+        android:layout_width="150dp"
         android:layout_height="43dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="244dp"
@@ -52,17 +65,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/assignmentCourseButton"
-        android:layout_width="353dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="160dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="100dp"
-        android:text="Course"
-        app:layout_constraintBottom_toTopOf="@+id/assignmentEstimatedTimeTextfield"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/assignmentEstimatedTimeTextfield"
@@ -77,7 +79,7 @@
         app:layout_constraintBottom_toTopOf="@+id/assignmentSubmitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assignmentCourseButton" />
+        app:layout_constraintTop_toBottomOf="@+id/assignmentCourseTextfield" />
 
     <Button
         android:id="@+id/assignmentBackButton"
