@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.teamduethis.ui_sprint1.MainActivity">
+
+
+    <EditText
+        android:id="@+id/assignmentNameTextfield"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:hint="Assignment name"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/assignmentCourseTextfield"
+        android:layout_width="320dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="160dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="100dp"
+        android:hint="Course"
+        app:layout_constraintBottom_toTopOf="@+id/assignmentEstimatedTimeTextfield"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/assignmentWeightTextfield"
+        android:layout_width="320dp"
+        android:layout_height="47dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="172dp"
+        android:ems="10"
+        android:hint="Weight"
+        android:inputType="textPersonName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/assignmentDueTimeButton"
+        android:layout_width="152dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="244dp"
+        android:onClick="showTimePickerDialog"
+        android:text="Due Time"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/assignmentDueDateButton"
+        android:layout_width="150dp"
+        android:layout_height="43dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="244dp"
+        android:onClick="showDatePickerDialog"
+        android:text="Due Date"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/assignmentEstimatedTimeTextfield"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="97dp"
+        android:layout_marginEnd="21dp"
+        android:layout_marginStart="21dp"
+        android:ems="10"
+        android:hint="Estimated Time"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/assignmentSubmitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/assignmentCourseTextfield" />
+
+    <Button
+        android:id="@+id/assignmentBackButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="70dp"
+        android:layout_marginStart="16dp"
+        android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/assignmentSubmitButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/assignmentSubmitButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
+        android:layout_marginEnd="23dp"
+        android:text="Submit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/assignmentBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/assignmentEstimatedTimeTextfield" />
+
+</android.support.constraint.ConstraintLayout>
