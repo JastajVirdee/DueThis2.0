@@ -102,7 +102,6 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
-
     @Override
     public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day){
         c.set(Calendar.YEAR, year);
