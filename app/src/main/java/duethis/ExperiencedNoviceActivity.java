@@ -59,7 +59,15 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
             case R.id.radio_experienced:
                 if (checked)
                     studentRole.delete();
-                    student.addStudentRole(new ExperiencedStudent(student));
+                    student.addStudentRole(new ExperiencedStudent(student,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0,
+                            0));
+
                     textView.setText("Experienced Student");
                     break;
             case R.id.radio_novice:
