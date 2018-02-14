@@ -38,8 +38,9 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="172dp"
         android:ems="10"
-        android:hint="Weight"
-        android:inputType="textPersonName"
+        android:hint="Percentage Weight"
+        android:digits="0123456789."
+        android:inputType="number"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,8 +75,9 @@
         android:layout_marginEnd="21dp"
         android:layout_marginStart="21dp"
         android:ems="10"
-        android:hint="Estimated Time"
-        android:inputType="numberDecimal"
+        android:hint="Estimated Hours to Complete"
+        android:digits="0123456789."
+        android:inputType="number"
         app:layout_constraintBottom_toTopOf="@+id/assignmentSubmitButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
