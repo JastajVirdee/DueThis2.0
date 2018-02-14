@@ -22,7 +22,16 @@ public class DueThisApplication extends Application {
         //Global Student
         String uuid = UUID.randomUUID().toString();
         student = new Student(uuid, "Tim");
-        StudentRole role = new ExperiencedStudent(student,0,0,0,0,0,0,0);
+
+        StudentRole role = new ExperiencedStudent(student,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0,
+                                0);
+
         student.addStudentRole(role);
         controller = new DueThisController();
     }

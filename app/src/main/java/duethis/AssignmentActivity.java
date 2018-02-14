@@ -73,13 +73,18 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 // getting student from global variable student.
                 Student student = application.student;
 
-                // Submit assig nment call to backend
+                boolean successful = false;
+                // Submit assignment call to backend
                 try {
                     boolean result = DueThisApplication.controller.createAssignment(name, course, date, weight, duration, student);
+                    successful = true;
                 } catch (InvalidInputException e) {
-                    e.printStackTrace();
+                    Tools.exceptionToast(getApplicationContext(),e.getMessage());
                 }
-                startActivity(new Intent(AssignmentActivity.this, MainActivity.class));
+
+                if(successful){
+                    startActivity(new Intent(AssignmentActivity.this, MainActivity.class));
+                }
             }
         });
     }
