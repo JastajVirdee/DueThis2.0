@@ -42,10 +42,10 @@ public class EditEventActivity extends AppCompatActivity implements DatePickerDi
         final DueThisApplication application = (DueThisApplication) this.getApplication();
 
         // getting the event id from a bundle.
-        Bundle b = getIntent().getExtras();
-        String eventId = null;
-        if (b != null)
-            eventId = b.getString("eventId");
+
+        Intent parameters = getIntent();
+        String eventId = parameters.getStringExtra("EventID");
+
 
         Student student = application.student;
 

@@ -36,12 +36,8 @@ public class EditAssignmentActivity extends AppCompatActivity implements DatePic
         // used to get global student variable.
         final DueThisApplication application = (DueThisApplication) this.getApplication();
 
-        // getting the assignment id from a bundle.
-        Bundle b = getIntent().getExtras();
-        String assignmentId = null;
-        if (b != null)
-            assignmentId = b.getString("assignmentId");
-
+        Intent parameters = getIntent();
+        String assignmentId = parameters.getStringExtra("AssignmentID");
         Student student = application.student;
 
 

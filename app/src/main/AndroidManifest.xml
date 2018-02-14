@@ -23,6 +23,7 @@
         <activity android:name=".ExperiencedNoviceActivity" />
         <activity android:name=".EditAssignmentActivity" />
         <activity android:name=".EditEventActivity"></activity>
+        <activity android:name=".ViewByDay" />
     </application>
 
 </manifest>
