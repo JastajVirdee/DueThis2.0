@@ -8,11 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import model.Student;
-
 public class MainActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener {
-
-    public static Student student;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

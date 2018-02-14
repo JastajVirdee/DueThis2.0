@@ -11,23 +11,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.util.Log;
 
 import java.time.Duration;
 import java.util.Calendar;
-import java.util.UUID;
 
-import controller.DueThisController;
 import controller.InvalidInputException;
 import model.Student;
 
-import duethis.MainActivity;
+
 
 
 public class AssignmentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     Calendar c = Calendar.getInstance();
-    DueThisController controller = new DueThisController();
+
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -76,9 +73,9 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 // getting student from global variable student.
                 Student student = application.student;
 
-                // Submit assignment call to backend
+                // Submit assig nment call to backend
                 try {
-                    boolean result = controller.createAssignment(name, course, date, weight, duration, student);
+                    boolean result = DueThisApplication.controller.createAssignment(name, course, date, weight, duration, student);
                 } catch (InvalidInputException e) {
                     e.printStackTrace();
                 }

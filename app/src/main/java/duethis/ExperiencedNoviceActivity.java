@@ -1,15 +1,11 @@
 package duethis;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.util.Log;
-import duethis.MainActivity;
+
 import model.ExperiencedStudent;
 import model.NoviceStudent;
 import model.Student;
@@ -59,7 +55,7 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
             case R.id.radio_experienced:
                 if (checked)
                     studentRole.delete();
-                    student.addStudentRole(new ExperiencedStudent(student));
+                    student.addStudentRole(new ExperiencedStudent(student, 0, 0, 0, 0, 0, 0, 0));
                     textView.setText("Experienced Student");
                     break;
             case R.id.radio_novice:
