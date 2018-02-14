@@ -21,7 +21,7 @@
         <activity android:name=".AssignmentActivity" />
         <activity android:name=".HoursAvailableActivity" />
         <activity android:name=".ExperiencedNoviceActivity" />
-        <activity android:name=".ViewAssignmentsByDay" />
+        <activity android:name=".ViewByDay" />
     </application>
 
 </manifest>

@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
 
     @Override
     public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
-        Intent intent = new Intent(MainActivity.this, ViewAssignmentsByDay.class);
+        Intent intent = new Intent(MainActivity.this, ViewByDay.class);
         Bundle parameters =  new Bundle();
         parameters.putInt("year", year);
         parameters.putInt("month", month);
