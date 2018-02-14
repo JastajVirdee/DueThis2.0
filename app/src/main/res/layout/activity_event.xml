@@ -11,13 +11,13 @@
         android:id="@+id/eventNameTextfield"
         android:layout_width="346dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="421dp"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Event name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/eventDateLabel"
+        app:layout_constraintBottom_toTopOf="@+id/eventBackButton"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,6 @@
         android:layout_width="343dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="164dp"
-        android:onClick="showTimePickerDialog"
         android:text="Time"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -38,9 +37,7 @@
         android:layout_width="352dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
-        android:onClick="showTimePickerDialog"
         android:text="Time"
-        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventFromTimeButton" />
@@ -62,29 +59,10 @@
         android:layout_marginBottom="61dp"
         android:layout_marginStart="16dp"
         android:text="TO"
-        app:layout_constraintBottom_toTopOf="@+id/eventRepeatLabel"
+        app:layout_constraintBottom_toTopOf="@+id/eventToTimeButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventDateButton" />
 
-    <TextView
-        android:id="@+id/eventRepeatLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="56dp"
-        android:layout_marginStart="16dp"
-        android:text="REPEAT"
-        app:layout_constraintBottom_toTopOf="@+id/eventSubmitButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventToLabel" />
-
-    <Spinner
-        android:id="@+id/eventRepeatSpinner"
-        android:layout_width="356dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventRepeatLabel" />
 
     <TextView
         android:id="@+id/eventDateLabel"
@@ -105,22 +83,38 @@
         android:layout_marginEnd="22dp"
         android:layout_marginStart="22dp"
         android:text="Date"
+        android:onClick="showDatePickerDialog"
         app:layout_constraintBottom_toTopOf="@+id/eventToLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventDateLabel" />
 
+    <CheckBox
+        android:id="@+id/eventRepeatCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text="Repeat Weekly"
+        app:layout_constraintBottom_toTopOf="@+id/eventBackButton"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eventToTimeButton" />
+
+
     <Button
         android:id="@+id/eventBackButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="17dp"
         android:layout_marginEnd="29dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="6dp"
         android:text="Back"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/eventSubmitButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventRepeatSpinner" />
+        app:layout_constraintTop_toBottomOf="@+id/eventNameTextfield" />
 
     <Button
         android:id="@+id/eventSubmitButton"
@@ -128,10 +122,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="17dp"
         android:layout_marginEnd="17dp"
+        android:layout_marginRight="16dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toEndOf="@+id/eventBackButton"
-        app:layout_constraintTop_toBottomOf="@+id/eventRepeatLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/eventRepeatCheckBox"
+        app:layout_constraintVertical_bias="1.0" />
 
 </android.support.constraint.ConstraintLayout>
