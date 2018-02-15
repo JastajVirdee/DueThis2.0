@@ -17,56 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/hoursAvailableBackButton" />
 
-    <Spinner
-        android:id="@+id/hoursAvailableDaySpinner"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="23dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginStart="35dp"
-        app:layout_constraintBottom_toTopOf="@+id/hoursAvailableHoursLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableDayLabel" />
-
-    <TextView
-        android:id="@+id/hoursAvailableDayLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="46dp"
-        android:text="Day"
-        app:layout_constraintBottom_toTopOf="@+id/hoursAvailableDaySpinner"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/hoursAvailableHoursLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="13dp"
-        android:layout_marginStart="16dp"
-        android:text="Hours"
-        app:layout_constraintBottom_toTopOf="@+id/hoursAvailableHoursTextfield"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableDaySpinner" />
-
-    <EditText
-        android:id="@+id/hoursAvailableHoursTextfield"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="229dp"
-        android:layout_marginEnd="19dp"
-        android:layout_marginStart="19dp"
-        android:ems="10"
-        android:hint="Hours"
-        android:inputType="numberDecimal"
-        app:layout_constraintBottom_toTopOf="@+id/hoursAvailableBackButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableHoursLabel" />
-
     <Button
         android:id="@+id/hoursAvailableBackButton"
         android:layout_width="0dp"
@@ -77,6 +27,182 @@
         android:text="Back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/hoursAvailableSubmitButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/hoursAvailableMondayLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Monday"
+        app:layout_constraintEnd_toStartOf="@+id/hoursAvailableMonTextfield"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableHoursTextfield" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/hoursAvailableTuesdayLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="34dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="58dp"
+        android:text="Tuesday"
+        app:layout_constraintBottom_toBottomOf="@+id/hoursAvailableWedLabel"
+        app:layout_constraintEnd_toStartOf="@+id/hoursAvailableTueTextfield"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/hoursAvailableMonTextfield" />
+
+    <TextView
+        android:id="@+id/hoursAvailableWedLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="13dp"
+        android:layout_marginStart="16dp"
+        android:text="Wednesday"
+        app:layout_constraintEnd_toStartOf="@+id/hoursAvailableWedTextfield"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/hoursAvailableWedTextfield" />
+
+    <TextView
+        android:id="@+id/hoursAvailableThurLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="29dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Thursday"
+        app:layout_constraintEnd_toStartOf="@+id/hoursAvailableThurTextfield"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableWedTextfield" />
+
+    <TextView
+        android:id="@+id/hoursAvailableFriLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginStart="16dp"
+        android:text="Friday"
+        app:layout_constraintBottom_toTopOf="@+id/hoursAvailableSatLabel"
+        app:layout_constraintEnd_toStartOf="@+id/hoursAvailableFriTextfield"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/hoursAvailableSatLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Saturday"
+        app:layout_constraintEnd_toStartOf="@+id/hoursAvailableSatTextfield"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableFriTextfield" />
+
+    <TextView
+        android:id="@+id/hoursAvailableSunLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="35dp"
+        android:text="Sunday"
+        app:layout_constraintEnd_toStartOf="@+id/hoursAvailableSunTextfield"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableSatLabel" />
+
+    <EditText
+        android:id="@+id/hoursAvailableMonTextfield"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Monday Availability"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hoursAvailableMondayLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/hoursAvailableTueTextfield"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Tuesday Availability"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hoursAvailableTuesdayLabel"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableMonTextfield" />
+
+    <EditText
+        android:id="@+id/hoursAvailableWedTextfield"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="Wednesday Availability"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hoursAvailableWedLabel"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableTueTextfield" />
+
+    <EditText
+        android:id="@+id/hoursAvailableThurTextfield"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Thursday Availability"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hoursAvailableThurLabel"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableWedTextfield" />
+
+    <EditText
+        android:id="@+id/hoursAvailableFriTextfield"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="Friday Availability"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hoursAvailableFriLabel"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableThurTextfield" />
+
+    <EditText
+        android:id="@+id/hoursAvailableSatTextfield"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Saturday Availability"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hoursAvailableSatLabel"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableFriTextfield" />
+
+    <EditText
+        android:id="@+id/hoursAvailableSunTextfield"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Sunday Availability"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hoursAvailableSunLabel"
+        app:layout_constraintTop_toBottomOf="@+id/hoursAvailableSatTextfield" />
+
 </android.support.constraint.ConstraintLayout>
