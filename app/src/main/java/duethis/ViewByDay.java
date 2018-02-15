@@ -48,7 +48,6 @@ public class ViewByDay extends AppCompatActivity {
         assignmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Assignment assignment = assignmentList.get(position);
                 Intent intent = new Intent(ViewByDay.this, EditAssignmentActivity.class); //TODO: change to editAssignmentActivity
                 String assignmentId = assignment.getId();
