@@ -31,6 +31,7 @@ public class EditAssignmentActivity extends AppCompatActivity implements DatePic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignement);
+        getSupportActionBar().setTitle("Edit Assignment");
 
 
         // used to get global student variable.

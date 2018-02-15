@@ -37,6 +37,7 @@ public class EditEventActivity extends AppCompatActivity implements DatePickerDi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        getSupportActionBar().setTitle("Edit Event");
 
         // used to get global student variable.
         final DueThisApplication application = (DueThisApplication) this.getApplication();
