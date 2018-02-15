@@ -48,9 +48,8 @@ public class ViewByDay extends AppCompatActivity {
         assignmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Assignment assignment = assignmentList.get(position);
-                Intent intent = new Intent(ViewByDay.this, MainActivity.class); //TODO: change to editAssignmentActivity
+                Intent intent = new Intent(ViewByDay.this, EditAssignmentActivity.class); //TODO: change to editAssignmentActivity
                 String assignmentId = assignment.getId();
                 intent.putExtra("AssignmentID", assignmentId);
                 startActivity(intent);
@@ -68,7 +67,7 @@ public class ViewByDay extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Event event = eventList.get(position);
-                Intent intent = new Intent(ViewByDay.this, MainActivity.class); //TODO: change to editEventActivity
+                Intent intent = new Intent(ViewByDay.this, EditEventActivity.class); //TODO: change to editEventActivity
                 String eventId = event.getId();
                 intent.putExtra("EventID", eventId);
                 startActivity(intent);
