@@ -62,10 +62,11 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 String course = courseField.getText().toString();
 
                 final EditText weightField = (EditText) findViewById(R.id.assignmentWeightTextfield);
-                float weight = Float.parseFloat(weightField.getText().toString());
+
+                float weight = !weightField.getText().toString().isEmpty() ? Float.parseFloat(weightField.getText().toString()) : 0;
 
                 final EditText estimatedTimeOfCompletionField = (EditText) findViewById(R.id.assignmentEstimatedTimeTextfield);
-                long estimatedTimeOfCompletion = Long.parseLong(estimatedTimeOfCompletionField.getText().toString());
+                long estimatedTimeOfCompletion = !estimatedTimeOfCompletionField.getText().toString().isEmpty() ? Long.parseLong(estimatedTimeOfCompletionField.getText().toString()): 0;
 
                 Duration duration = Duration.ofHours(estimatedTimeOfCompletion);
                 java.sql.Date date = new java.sql.Date(c.getTimeInMillis());
