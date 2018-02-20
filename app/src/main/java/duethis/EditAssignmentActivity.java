@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.CheckBox;
 
 import java.util.List;
 import java.time.Duration;
@@ -83,6 +84,11 @@ public class EditAssignmentActivity extends AppCompatActivity implements DatePic
         Date assignmentDueDate = assignmentToModify.getDueDate();
         calendarAssignmentDueDate.setTime(assignmentDueDate);
 
+        //completed assignment or not
+        final CheckBox completedField = (CheckBox) findViewById(R.id.assignmentDoneCheckBox);
+        completedField.setChecked(assignmentToModify.getIsCompleted());
+
+
 
         // Click Back
         Button backButton = findViewById(R.id.assignmentBackButton);
@@ -115,6 +121,10 @@ public class EditAssignmentActivity extends AppCompatActivity implements DatePic
                 final EditText estimatedTimeOfCompletionField = (EditText) findViewById(R.id.assignmentEstimatedTimeTextfield);
                 long estimatedTimeOfCompletion = Long.parseLong(estimatedTimeOfCompletionField.getText().toString());
 
+                final CheckBox completedField  = (CheckBox)findViewById(R.id.assignmentDoneCheckBox);
+                boolean isCompleted = completedField.isChecked();
+
+
                 Duration duration = Duration.ofHours(estimatedTimeOfCompletion);
                 java.sql.Date date = new java.sql.Date(calendarAssignmentDueDate.getTimeInMillis());
 
@@ -125,6 +135,9 @@ public class EditAssignmentActivity extends AppCompatActivity implements DatePic
                 // Submit assignment call to backend
                 try {
                     controller.editAssignment(assignmentOnSubmit, name, course, date, weight, duration, student);
+                    if(isCompleted){
+                        controller.completeAssignment(student, assignmentOnSubmit);
+                    }
                     successful = true;
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());

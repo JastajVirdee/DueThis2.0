@@ -82,7 +82,11 @@ public class ViewByDay extends AppCompatActivity {
         Iterator<Assignment> iterator = assignments.iterator();
         while(iterator.hasNext()){
             Assignment tempAssignment = iterator.next();
-            assignmentStrings.add("Name: "+ tempAssignment.getName() + ", Course: " + tempAssignment.getCourse());
+            String toDo = "To Do";
+            if(tempAssignment.isIsCompleted()){
+                toDo = "Done";
+            }
+            assignmentStrings.add("Name: "+ tempAssignment.getName() + ", Course: " + tempAssignment.getCourse() + " " + toDo);
         }
         return assignmentStrings;
     }
