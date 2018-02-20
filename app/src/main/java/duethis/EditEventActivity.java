@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import java.sql.Time;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import controller.DueThisController;
@@ -22,7 +22,7 @@ import controller.InvalidInputException;
 import model.Event;
 import model.Student;
 
-public class EditEventActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class EditEventActivity extends EditActivity {
     DialogFragment fromTimeFragment = new TimePicker();
     DialogFragment toTimeFragment = new TimePicker();
     private Calendar calendarEventStartDate = Calendar.getInstance();
@@ -76,8 +76,8 @@ public class EditEventActivity extends AppCompatActivity implements DatePickerDi
         final CheckBox checkBox = (CheckBox) findViewById(R.id.eventRepeatCheckBox);
         checkBox.setChecked(eventToModify.getRepeatedWeekly());
 
-        Date eventStartDate = eventToModify.getStartTime();
-        Date eventEndDate = eventToModify.getEndTime();
+        java.sql.Time eventStartDate = eventToModify.getStartTime();
+        java.sql.Time eventEndDate = eventToModify.getEndTime();
         calendarEventStartDate.setTime(eventStartDate);
         calendarEventStopDate.setTime(eventEndDate);
 
@@ -122,6 +122,7 @@ public class EditEventActivity extends AppCompatActivity implements DatePickerDi
             }
         });
 
+        final EditEventActivity currentActivity = this;
 
         //Click on From Date Picker
         Button fromTimeButton = findViewById(R.id.eventFromTimeButton);
@@ -130,7 +131,7 @@ public class EditEventActivity extends AppCompatActivity implements DatePickerDi
             public void onClick(View v) {
                 lastClicked = fromTimeField;
                 if (getFragmentManager().findFragmentByTag("fromTimePicker") == null) {
-                    fromTimeFragment.show(getFragmentManager(), "fromTimePicker");
+                    currentActivity.showTimePickerDialog(v);
                 }
             }
         });
@@ -142,7 +143,7 @@ public class EditEventActivity extends AppCompatActivity implements DatePickerDi
             public void onClick(View v) {
                 lastClicked = toTimeField;
                 if (getFragmentManager().findFragmentByTag("toTimePicker") == null) {
-                    toTimeFragment.show(getFragmentManager(), "toTimePicker");
+                    currentActivity.showTimePickerDialog(v);
                 }
             }
         });
@@ -173,9 +174,14 @@ public class EditEventActivity extends AppCompatActivity implements DatePickerDi
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         Bundle args = new Bundle();
-        args.putInt("year", calendarEventStartDate.YEAR);
-        args.putInt("month", calendarEventStartDate.MONTH);
-        args.putInt("day", calendarEventStartDate.DAY_OF_MONTH);
+        java.sql.Date theDate = new java.sql.Date(calendarEventStartDate.getTimeInMillis());
+        String[] dateString = theDate.toString().split("-");
+        int year = Integer.parseInt(dateString[0]);
+        int month = Integer.parseInt(dateString[1]) - 1; // need to subtract 1 here for the date.
+        int day = Integer.parseInt(dateString[2]);
+        args.putInt("year", year);
+        args.putInt("month", month);
+        args.putInt("day", day);
         newFragment.setArguments(args);
         newFragment.show(getFragmentManager(), "datePicker");
     }
@@ -183,13 +189,16 @@ public class EditEventActivity extends AppCompatActivity implements DatePickerDi
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment();
         Bundle args = new Bundle();
+        java.sql.Time eventTime;
         if (lastClicked.equals(fromTimeField)) {
-            args.putInt("hour", calendarEventStartDate.HOUR);
-            args.putInt("minute", calendarEventStartDate.MINUTE);
+            eventTime = new java.sql.Time(calendarEventStartDate.getTimeInMillis());
         } else {
-            args.putInt("hour", calendarEventStopDate.HOUR);
-            args.putInt("minute", calendarEventStopDate.MINUTE);
+            eventTime = new java.sql.Time(calendarEventStopDate.getTimeInMillis());
         }
+        int hours = eventTime.getHours();
+        int minutes = eventTime.getMinutes();
+        args.putInt("hour", hours);
+        args.putInt("minute", minutes);
         newFragment.setArguments(args);
         newFragment.show(getFragmentManager(), "timePicker");
     }

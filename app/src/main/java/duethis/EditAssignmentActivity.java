@@ -181,7 +181,6 @@ public class EditAssignmentActivity extends EditActivity {
         int minutes = assignmentTime.getMinutes();
         args.putInt("hour", hours);
         args.putInt("minute", minutes);
-
         newFragment.setArguments(args);
         newFragment.show(getFragmentManager(), "timePicker");
     }
