@@ -12,32 +12,26 @@ import android.app.Fragment;
 import android.widget.TextView;
 import android.widget.DatePicker;
 import android.app.Dialog;
+import android.content.Context;
+import android.app.Activity;
 import java.util.Calendar;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
+public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-
         Bundle b = this.getArguments();
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
+        int year = b.getInt("year");
+        int month = b.getInt("month");
+        int day = b.getInt("day");
 
-        if(b != null) {
-            year = c.get(b.getInt("year"));
-            month = c.get(b.getInt("month"));
-            day = c.get(b.getInt("day"));
-        }
-
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        Activity activity = getActivity();
+        DatePickerDialog datePicker = new DatePickerDialog(getActivity(), this, year, month, day);
+        datePicker.setOnDateSetListener((EditActivity)getActivity());
+        return datePicker;
     }
+
     public void onDateSet(DatePicker view, int year, int month, int day) {
         //Do something with the date chosen by the user
-
     }
 }

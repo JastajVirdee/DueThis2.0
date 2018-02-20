@@ -10,13 +10,10 @@ import android.widget.TextView;
 import android.widget.DatePicker;
 import android.app.Dialog;
 import java.util.Calendar;
+import android.app.Activity;
 
-/**
- * A simple {@link Fragment} subclass.
- */
+
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
-
-
     public void onTimeSet(TimePicker view, int hour, int minute) {
         // Do something with the time chosen by the user.
     }
@@ -24,17 +21,11 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
-
-        Bundle b = savedInstanceState;
-        final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR);
-        int minute = c.get(Calendar.MINUTE);
-
-        if(b != null) {
-            hour = b.getInt("hour");
-            minute = b.getInt("minute");
-        }
-
-        return new TimePickerDialog(getActivity(), this, hour, minute, true);
+        Bundle b = this.getArguments();
+        int hour = b.getInt("hour");
+        int minute = b.getInt("minute");
+        EditActivity editActivity = (EditActivity)getActivity();
+        TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(), editActivity, hour, minute, false);
+        return timePickerDialog;
     }
 }

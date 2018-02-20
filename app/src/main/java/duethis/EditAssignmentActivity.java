@@ -23,7 +23,7 @@ import controller.InvalidInputException;
 import model.Student;
 import model.Assignment;
 
-public class EditAssignmentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+public class EditAssignmentActivity extends EditActivity {
 
     DueThisController controller = new DueThisController();
     private Calendar calendarAssignmentDueDate = Calendar.getInstance();
@@ -116,7 +116,12 @@ public class EditAssignmentActivity extends AppCompatActivity implements DatePic
                 String course = courseField.getText().toString();
 
                 final EditText weightField = (EditText) findViewById(R.id.assignmentWeightTextfield);
-                float weight = Float.parseFloat(weightField.getText().toString());
+                float weight;
+                try {
+                    weight = Float.parseFloat(weightField.getText().toString());
+                }catch(NumberFormatException e){
+                    weight = 0;
+                }
 
                 final EditText estimatedTimeOfCompletionField = (EditText) findViewById(R.id.assignmentEstimatedTimeTextfield);
                 long estimatedTimeOfCompletion = Long.parseLong(estimatedTimeOfCompletionField.getText().toString());
@@ -156,9 +161,14 @@ public class EditAssignmentActivity extends AppCompatActivity implements DatePic
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
         Bundle args = new Bundle();
-        args.putInt("year", calendarAssignmentDueDate.YEAR);
-        args.putInt("month", calendarAssignmentDueDate.MONTH);
-        args.putInt("day", calendarAssignmentDueDate.DAY_OF_MONTH);
+        java.sql.Date theDate = new java.sql.Date(calendarAssignmentDueDate.getTimeInMillis());
+        String[] dateString = theDate.toString().split("-");
+        int year = Integer.parseInt(dateString[0]);
+        int month = Integer.parseInt(dateString[1]) - 1; // need to subtract 1 here for the date.
+        int day = Integer.parseInt(dateString[2]);
+        args.putInt("year", year);
+        args.putInt("month", month);
+        args.putInt("day", day);
         newFragment.setArguments(args);
         newFragment.show(getFragmentManager(), "datePicker");
     }
@@ -166,8 +176,13 @@ public class EditAssignmentActivity extends AppCompatActivity implements DatePic
     public void showTimePickerDialog(View v) {
         DialogFragment newFragment = new TimePickerFragment();
         Bundle args = new Bundle();
-        args.putInt("hour", calendarAssignmentDueDate.HOUR);
-        args.putInt("minute", calendarAssignmentDueDate.MINUTE);
+        Date assignmentTime = calendarAssignmentDueDate.getTime();
+        int hours = assignmentTime.getHours();
+        int minutes = assignmentTime.getMinutes();
+        args.putInt("hour", hours);
+        args.putInt("minute", minutes);
+
+        newFragment.setArguments(args);
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
