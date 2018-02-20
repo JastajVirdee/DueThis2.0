@@ -90,7 +90,7 @@
         android:layout_marginBottom="17dp"
         android:layout_marginEnd="70dp"
         android:layout_marginStart="16dp"
-        android:text="Back"
+        android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/assignmentSubmitButton"
         app:layout_constraintStart_toStartOf="parent" />
@@ -105,6 +105,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/assignmentBackButton"
+        app:layout_constraintTop_toBottomOf="@+id/assignmentEstimatedTimeTextfield" />
+
+    <CheckBox
+        android:id="@+id/assignmentDoneCheckBox"
+        android:layout_width="77dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Done"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/assignmentEstimatedTimeTextfield" />
 
 </android.support.constraint.ConstraintLayout>
