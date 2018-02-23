@@ -28,4 +28,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation files('libs/DueThisController.jar')
     compile files('libs/DueThisController.jar')
+    implementation 'com.android.support:design:26.1.0'
 }
