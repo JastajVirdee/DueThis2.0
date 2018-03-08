@@ -85,12 +85,31 @@ public class EditEventActivity extends EditActivity {
         final Event eventOnSubmit = eventToModify;
 
 
-        // Click Back
+        // Click Delete
         Button backButton = findViewById(R.id.eventBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EditEventActivity.this, MainActivity.class));
+                final EditText nameField = (EditText) findViewById(R.id.eventNameTextfield);
+                String name = nameField.getText().toString();
+                java.sql.Date date = new java.sql.Date(calendarEventStartDate.getTimeInMillis());
+                Time startTime = new Time(calendarEventStartDate.getTimeInMillis());
+                Time endTime = new Time(calendarEventStopDate.getTimeInMillis());
+                final CheckBox checkBox = (CheckBox) findViewById(R.id.eventRepeatCheckBox);
+                boolean repeatWeekly = checkBox.isChecked();
+
+                Student student = application.student;
+                boolean successful = false;
+                try {
+                    boolean created = controller.removeEvent(student, eventOnSubmit);
+                    successful = true;
+                } catch (InvalidInputException e) {
+                    Tools.exceptionToast(getApplicationContext(), e.getMessage());
+                }
+
+                if (successful) {
+                    startActivity(new Intent(EditEventActivity.this, MainActivity.class));
+                }
             }
         });
 

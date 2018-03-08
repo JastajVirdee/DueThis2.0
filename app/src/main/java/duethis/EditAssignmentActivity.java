@@ -90,12 +90,59 @@ public class EditAssignmentActivity extends EditActivity {
 
 
 
-        // Click Back
+        // Click Delete
         Button backButton = findViewById(R.id.assignmentBackButton);
+
+        final Assignment assignmentOnDeletion = assignmentToModify;
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EditAssignmentActivity.this, MainActivity.class));
+
+                // Get fields from assignment form
+                final EditText nameField = (EditText) findViewById(R.id.assignmentNameTextfield);
+                String name = nameField.getText().toString();
+
+                final EditText courseField = (EditText) findViewById(R.id.assignmentCourseTextfield);
+                String course = courseField.getText().toString();
+
+                final EditText weightField = (EditText) findViewById(R.id.assignmentWeightTextfield);
+                float weight;
+                try {
+                    weight = Float.parseFloat(weightField.getText().toString());
+                }catch(NumberFormatException e){
+                    weight = 0;
+                }
+
+                final EditText estimatedTimeOfCompletionField = (EditText) findViewById(R.id.assignmentEstimatedTimeTextfield);
+                long estimatedTimeOfCompletion = Long.parseLong(estimatedTimeOfCompletionField.getText().toString());
+
+                final CheckBox completedField  = (CheckBox)findViewById(R.id.assignmentDoneCheckBox);
+                boolean isCompleted = completedField.isChecked();
+
+
+                Duration duration = Duration.ofHours(estimatedTimeOfCompletion);
+                java.sql.Date date = new java.sql.Date(calendarAssignmentDueDate.getTimeInMillis());
+
+                // getting student from global variable student.
+                Student student = application.student;
+
+                boolean successful = false;
+                // Submit assignment call to backend
+
+                try {
+                    controller.removeAssignment(student, assignmentOnDeletion);
+                    if(isCompleted){
+                        controller.removeAssignment(student, assignmentOnDeletion);
+                    }
+                    successful = true;
+                } catch (InvalidInputException e) {
+                    Tools.exceptionToast(getApplicationContext(), e.getMessage());
+                }
+
+                if (successful) {
+                    startActivity(new Intent(EditAssignmentActivity.this, MainActivity.class));
+                }
+
             }
         });
 
