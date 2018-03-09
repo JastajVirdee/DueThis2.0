@@ -10,11 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import controller.DueThisController;
-import controller.InvalidInputException;
+
+//import controller.AccountController; //////////////////////////////////////////////////////////////////////////////////////
+
+
 import model.Student;
 
 
-public class LoginActivity  extends AppCompatActivity {
+public class LoginActivityNew  extends AppCompatActivity {
 
     private EditText unameField;
     private String thisUname;
@@ -24,6 +27,7 @@ public class LoginActivity  extends AppCompatActivity {
 
 
     DueThisController controller = new DueThisController();
+    // AccountController acctController = new AccountController(); //////////////////////////////////////////////////////
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -31,7 +35,7 @@ public class LoginActivity  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_login_new);
         getSupportActionBar().setTitle("Login");
 
         // Click Login Button
@@ -43,29 +47,27 @@ public class LoginActivity  extends AppCompatActivity {
             {
                 unameField = findViewById(R.id.loginUsernameField);
                 String unameText = unameField.getText().toString();
-                
+
 
                 pwordField = findViewById(R.id.loginPasswordField);
                 String pwordText = pwordField.getText().toString();
 
 
+                /*
+                Student s = acctController.logIn(unameText, pwordText);
 
 
+                if(s == null) // null if login is invalid
+                {
+
+                }
+                else
+                {
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }
+                */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });
 
