@@ -3,39 +3,30 @@ package duethis;
 /**
  * Created by Oli on February-132018.
  */
+import android.accounts.Account;
 import android.app.Application;
-
 import java.util.UUID;
 
 import controller.DueThisController;
-import model.ExperiencedStudent;
+import controller.AccountController;
+
 import model.Student;
-import model.StudentRole;
 
 public class DueThisApplication extends Application {
 
     public static Student student;
     public static DueThisController controller;
+    public static AccountController controllerAccount;
 
     public DueThisApplication(){
         super();
-        //Global Student
-        String uuid = UUID.randomUUID().toString();
-        student = new Student(uuid, "Tim");
+        // Global Application used to store students, events, assignments
+        model.Application application = model.Application.getInstance();
 
-        StudentRole role = new ExperiencedStudent(student,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0,
-                                0);
-
-        student.addStudentRole(role);
+        // Controller which manipulates domain model objects.
         controller = new DueThisController();
+
+        // Controller which creates and deletes accounts
+        controllerAccount = new AccountController();
     }
-
-
-
 }
