@@ -48,7 +48,7 @@ public class EditEventActivity extends EditActivity {
         String eventId = parameters.getStringExtra("EventID");
 
 
-        Student student = application.student;
+        final Student student = application.student;
 
         List<Event> events = student.getEvents();
 
@@ -85,12 +85,22 @@ public class EditEventActivity extends EditActivity {
         final Event eventOnSubmit = eventToModify;
 
 
-        // Click Back
-        Button backButton = findViewById(R.id.eventBackButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
+        // Delete event
+        Button deleteButton = findViewById(R.id.eventDeleteButton);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(EditEventActivity.this, MainActivity.class));
+                boolean successful = false;
+                try {
+                    successful = controller.removeEvent(student, eventOnSubmit);
+                }catch(InvalidInputException e){
+                    Tools.exceptionToast(getApplicationContext(),"Can't remove event");
+                }
+
+                if(successful){
+                    startActivity(new Intent(EditEventActivity.this, MainActivity.class));
+                    Tools.exceptionToast(getApplicationContext(),"Event deleted");
+                }
             }
         });
 
