@@ -5,11 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
-
-import model.ExperiencedStudent;
-import model.NoviceStudent;
 import model.Student;
-import model.StudentRole;
 
 public class ExperiencedNoviceActivity extends AppCompatActivity {
 
@@ -25,11 +21,10 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
         // Setting the experience by default here.
         Student student = application.student;
 
-        StudentRole studentRole = student.getStudentRole(0);
         TextView textView = (TextView) findViewById(R.id.experienceStatus);
 
 
-        if(studentRole instanceof ExperiencedStudent){
+        if(student.getExperienced()){
             textView.setText("Experienced Student");
         }else {
             textView.setText("Novice Student");
@@ -47,29 +42,18 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
         Student student = application.student;
 
 
-        StudentRole studentRole = student.getStudentRole(0);
         TextView textView = (TextView) findViewById(R.id.experienceStatus);
 
         // Check which radio button was clicked
         switch(view.getId()) {
             case R.id.radio_experienced:
                 if (checked)
-                    studentRole.delete();
-                    student.addStudentRole(new ExperiencedStudent(student,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0,
-                            0));
-
+                    student.setExperienced(true);
                     textView.setText("Experienced Student");
                     break;
             case R.id.radio_novice:
                 if (checked)
-                    studentRole.delete();
-                    student.addStudentRole(new NoviceStudent(student));
+                    student.setExperienced(false);
                     textView.setText("Novice Student");
                     break;
         }
