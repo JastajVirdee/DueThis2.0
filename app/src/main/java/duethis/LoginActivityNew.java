@@ -20,36 +20,28 @@ import model.Student;
 public class LoginActivityNew  extends AppCompatActivity {
 
     private EditText unameField;
-    private String thisUname;
+    //private String thisUname;
 
     private EditText pwordField;
-    private String thisPword;
+    //private String thisPword;
 
     Student s;
 
-    //getting controller stuff
+    // getting controller stuff
     DueThisController controller = new DueThisController();
     AccountController acctController = new AccountController();
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
+    //@RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_new);
-        getSupportActionBar().setTitle("Login");
+        getSupportActionBar().setTitle("DueThis Login");
 
-
-        // Click Back
-        Button backButton = findViewById(R.id.hoursAvailableBackButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivityNew.this, MainActivity.class));
-            }
-        });
-
+        // used to get global student variable.
+        final DueThisApplication application = (DueThisApplication) this.getApplication();
 
         // Click Register Button
         Button registerButton = findViewById(R.id.registerButton);
@@ -72,9 +64,9 @@ public class LoginActivityNew  extends AppCompatActivity {
                 unameField = findViewById(R.id.loginUsernameField);
                 String unameText = unameField.getText().toString();
 
-
                 pwordField = findViewById(R.id.loginPasswordField);
                 String pwordText = pwordField.getText().toString();
+
 
                 try {
                     Student s = acctController.logIn(unameText, pwordText);
@@ -82,20 +74,18 @@ public class LoginActivityNew  extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+
                 if(s == null) // null if login is invalid
                 {
                     //TODO print that login was unsuccessful
+                    System.out.println("student is null"); // for debugging
                 }
                 else
                 {
                     startActivity(new Intent(LoginActivityNew.this, MainActivity.class));
                 }
-
-
-
             }
         });
-
     }
 }
 
