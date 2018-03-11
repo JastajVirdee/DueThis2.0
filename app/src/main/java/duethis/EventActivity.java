@@ -45,15 +45,8 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
         // used to get global student variable.
         final DueThisApplication application = (DueThisApplication) this.getApplication();
 
-
-        // Click Back
-        Button backButton = findViewById(R.id.eventBackButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(EventActivity.this, MainActivity.class));
-            }
-        });
+        Button deleteButton = findViewById(R.id.eventDeleteButton);
+        deleteButton.setVisibility(View.GONE);
 
         // Click Submit
         Button submitButton = findViewById(R.id.eventSubmitButton);
