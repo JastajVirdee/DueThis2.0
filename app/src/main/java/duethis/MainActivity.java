@@ -46,12 +46,21 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
         });
 
 
-        //ExperiencedNovice Selection
+        // ExperiencedNovice Selection
         Button setExperienceButton = findViewById(R.id.mainSetExperience);
         setExperienceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ExperiencedNoviceActivity.class));
+            }
+        });
+
+        // Logout Button
+        Button logoutButton = findViewById(R.id.mainLogout);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivityNew.class));
             }
         });
 
