@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener {
 
@@ -16,7 +17,8 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
         setContentView(R.layout.activity_main);
         getSupportActionBar().setTitle("Home");
 
-
+        // used to get global student variable.
+        final DueThisApplication application = (DueThisApplication) this.getApplication();
 
         // Click Add Assignment
         Button addAssignmentButton = findViewById(R.id.mainAddAssignmentButton);
@@ -52,6 +54,17 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ExperiencedNoviceActivity.class));
+            }
+        });
+
+        //TODO: Delete account
+        Button deleteAccountButton = findViewById(R.id.mainDeleteAccountButton);
+        deleteAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                application.student = null;
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                Toast.makeText(getApplicationContext(), "User account deleted", Toast.LENGTH_SHORT).show();
             }
         });
 
