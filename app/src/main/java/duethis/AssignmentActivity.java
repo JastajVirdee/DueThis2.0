@@ -36,17 +36,8 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
         // used to get global student variable.
         final DueThisApplication application = (DueThisApplication) this.getApplication();
 
-
-
-
-        // Click Back
-        Button backButton = findViewById(R.id.assignmentBackButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(AssignmentActivity.this, MainActivity.class));
-            }
-        });
+        Button deleteButton = findViewById(R.id.assignmentDeleteButton);
+        deleteButton.setVisibility(View.GONE);
 
         // Click Submit
         Button submitButton = findViewById(R.id.assignmentSubmitButton);

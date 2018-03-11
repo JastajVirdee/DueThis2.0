@@ -90,7 +90,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
         android:text="Repeat Weekly"
-        app:layout_constraintBottom_toTopOf="@+id/eventBackButton"
+        app:layout_constraintBottom_toTopOf="@+id/eventDeleteButton"
 
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,13 +98,13 @@
 
 
     <Button
-        android:id="@+id/eventBackButton"
+        android:id="@+id/eventDeleteButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="17dp"
         android:layout_marginEnd="29dp"
         android:layout_marginStart="16dp"
-        android:text="Back"
+        android:text="Delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/eventSubmitButton"
         app:layout_constraintStart_toStartOf="parent" />
@@ -120,7 +120,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/eventBackButton"
+        app:layout_constraintStart_toEndOf="@+id/eventDeleteButton"
         app:layout_constraintTop_toBottomOf="@+id/eventRepeatCheckBox"
         app:layout_constraintVertical_bias="1.0" />
 
