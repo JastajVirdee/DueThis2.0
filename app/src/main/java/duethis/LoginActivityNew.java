@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/*
+//****Not needed anymore****
 import controller.DueThisController;
 import controller.AccountController;
 import controller.InvalidInputException;
-
+*/
 
 import model.Student;
 
@@ -20,17 +22,16 @@ import model.Student;
 public class LoginActivityNew  extends AppCompatActivity {
 
     private EditText unameField;
-    //private String thisUname;
-
     private EditText pwordField;
-    //private String thisPword;
 
-    Student s;
+    Student student = null;
 
+    /*
+    // ****Not needed anymore****
     // getting controller stuff
     DueThisController controller = new DueThisController();
     AccountController acctController = new AccountController();
-
+    */
 
     //@RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -40,8 +41,9 @@ public class LoginActivityNew  extends AppCompatActivity {
         setContentView(R.layout.activity_login_new);
         getSupportActionBar().setTitle("DueThis Login");
 
-        // used to get global student variable.
+        // used to get global student variable
         final DueThisApplication application = (DueThisApplication) this.getApplication();
+
 
         // Click Register Button
         Button registerButton = findViewById(R.id.registerButton);
@@ -51,7 +53,6 @@ public class LoginActivityNew  extends AppCompatActivity {
                 startActivity(new Intent(LoginActivityNew.this, RegisterActivity.class));
             }
         });
-
 
 
         // Click Login Button
@@ -67,23 +68,22 @@ public class LoginActivityNew  extends AppCompatActivity {
                 pwordField = findViewById(R.id.loginPasswordField);
                 String pwordText = pwordField.getText().toString();
 
-
-                try {
-                    Student s = acctController.logIn(unameText, pwordText);
-                } catch (InvalidInputException e) {
-                    e.printStackTrace();
+                //application.student = null;
+                try{
+                    //Student s = acctController.logIn(unameText, pwordText);
+                    student = application.controllerAccount.logIn(unameText,pwordText);
+                    application.student = student;
+                }
+                catch (controller.InvalidInputException e) {
+                    Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }
 
-
-                if(s == null) // null if login is invalid
+                if(student != null) // Successful
                 {
-                    //TODO print that login was unsuccessful
-                    System.out.println("student is null"); // for debugging
-                }
-                else
-                {
+                    Tools.exceptionToast(getApplicationContext(), "Login successful!\n  Welcome "+ unameText);
                     startActivity(new Intent(LoginActivityNew.this, MainActivity.class));
                 }
+                // no else needed because error is already caught earlier
             }
         });
     }
