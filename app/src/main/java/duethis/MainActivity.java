@@ -1,7 +1,9 @@
 package duethis;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -62,9 +64,19 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
         deleteAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                application.student = null;
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                Toast.makeText(getApplicationContext(), "User account deleted", Toast.LENGTH_SHORT).show();
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Delete Account")
+                        .setMessage("Do you really want to delete this account?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                application.student = null;
+                                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                                Toast.makeText(getApplicationContext(), "User account deleted", Toast.LENGTH_SHORT).show();
+                            }})
+                        .setNegativeButton(android.R.string.no, null).show();
             }
         });
 
