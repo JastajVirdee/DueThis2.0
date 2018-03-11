@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import controller.InvalidInputException;
+
 public class MainActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener {
 
     @Override
@@ -67,11 +69,16 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
 
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Delete Account")
-                        .setMessage("Do you really want to delete this account?")
+                        .setMessage("Do you really want to permanently delete this account?")
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                             public void onClick(DialogInterface dialog, int whichButton) {
+                                try {
+                                    application.controllerAccount.deleteAccount(application.student.getUsername(), application.student.getPassword());
+                                } catch (InvalidInputException e) {
+                                    e.printStackTrace();
+                                }
                                 application.student = null;
                                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                                 Toast.makeText(getApplicationContext(), "User account deleted", Toast.LENGTH_SHORT).show();
