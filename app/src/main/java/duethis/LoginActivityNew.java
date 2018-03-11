@@ -33,6 +33,10 @@ public class LoginActivityNew  extends AppCompatActivity {
     AccountController acctController = new AccountController();
     */
 
+
+    // TODO: Remove data from application. Data related to student will be loaded from persistence later.
+
+
     //@RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -80,6 +84,7 @@ public class LoginActivityNew  extends AppCompatActivity {
 
                 if(student != null) // Successful
                 {
+                    //TODO: Load data from persistence
                     Tools.exceptionToast(getApplicationContext(), "Login successful!\n  Welcome "+ unameText);
                     startActivity(new Intent(LoginActivityNew.this, MainActivity.class));
                 }
