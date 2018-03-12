@@ -77,12 +77,6 @@ public class HoursAvailableActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
         // Click Back
         Button backButton = findViewById(R.id.hoursAvailableBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -132,9 +126,9 @@ public class HoursAvailableActivity extends AppCompatActivity {
                 try {
                     controller.updateAvailabilities(student, sunHours, mondayHours, tuesdayHours, wedHours, thurHours, friHours, satHours);
                     startActivity(new Intent(HoursAvailableActivity.this, MainActivity.class));
-                } catch (InvalidInputException e) {
-                    e.printStackTrace();
-                }
+                } catch (controller.InvalidInputException e) {
+                        Tools.exceptionToast(getApplicationContext(), e.getMessage());
+                    }
             }
         });
     }
