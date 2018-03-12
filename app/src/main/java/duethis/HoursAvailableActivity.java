@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import controller.DueThisController;
 import controller.InvalidInputException;
@@ -43,6 +44,45 @@ public class HoursAvailableActivity extends AppCompatActivity {
         // used to get global student variable.
         final DueThisApplication application = (DueThisApplication) this.getApplication();
 
+        final Student student = application.student;
+
+        // Setting text in text fields to what they currently are
+        mondayField = (EditText) findViewById(R.id.hoursAvailableMonTextfield);
+        mondayHours = student.getMondayAvailability();
+        mondayField.setText(Integer.toString(mondayHours), TextView.BufferType.EDITABLE);
+
+        tuesdayField = (EditText) findViewById(R.id.hoursAvailableTueTextfield);
+        tuesdayHours = student.getTuesdayAvailability();
+        tuesdayField.setText(Integer.toString(tuesdayHours), TextView.BufferType.EDITABLE);
+
+        wedField = (EditText) findViewById(R.id.hoursAvailableWedTextfield);
+        wedHours = student.getWednesdayAvailability();
+        wedField.setText(Integer.toString(wedHours), TextView.BufferType.EDITABLE);
+
+        thurField = (EditText) findViewById(R.id.hoursAvailableThurTextfield);
+        thurHours = student.getThursdayAvailability();
+        thurField.setText(Integer.toString(thurHours), TextView.BufferType.EDITABLE);
+
+        friField = (EditText) findViewById(R.id.hoursAvailableFriTextfield);
+        friHours = student.getFridayAvailability();
+        friField.setText(Integer.toString(friHours), TextView.BufferType.EDITABLE);
+
+        satField = (EditText) findViewById(R.id.hoursAvailableSatTextfield);
+        satHours = student.getSaturdayAvailability();
+        satField.setText(Integer.toString(satHours), TextView.BufferType.EDITABLE);
+
+        sunField = (EditText) findViewById(R.id.hoursAvailableSunTextfield);
+        sunHours = student.getSundayAvailability();
+        sunField.setText(Integer.toString(sunHours), TextView.BufferType.EDITABLE);
+
+
+
+
+
+
+
+
+
         // Click Back
         Button backButton = findViewById(R.id.hoursAvailableBackButton);
         backButton.setOnClickListener(new View.OnClickListener() {
@@ -58,43 +98,36 @@ public class HoursAvailableActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                mondayField = findViewById(R.id.hoursAvailableMonTextfield);
                 String mondayText = mondayField.getText().toString();
                 if (mondayText.matches("") ) { mondayHours = 0; }
                 else { mondayHours = Integer.parseInt(mondayText); }
 
-                tuesdayField = findViewById(R.id.hoursAvailableTueTextfield);
                 String tuesdayText = tuesdayField.getText().toString();
                 if (tuesdayText.matches("")) { tuesdayHours = 0; }
                 else { tuesdayHours = Integer.parseInt(tuesdayText); }
 
-                wedField = findViewById(R.id.hoursAvailableWedTextfield);
                 String wedText = wedField.getText().toString();
                 if (wedText.matches("")) { wedHours = 0; }
                 else { wedHours = Integer.parseInt(wedText); }
 
-                thurField = findViewById(R.id.hoursAvailableThurTextfield);
                 String thurText = thurField.getText().toString();
                 if (thurText.matches("")) { thurHours = 0; }
                 else { thurHours = Integer.parseInt(thurText); }
 
-                friField = findViewById(R.id.hoursAvailableFriTextfield);
                 String friText = friField.getText().toString();
                 if (friText.matches("")) { friHours = 0; }
                 else { friHours = Integer.parseInt(friText); }
 
-                satField = findViewById(R.id.hoursAvailableSatTextfield);
                 String satText = satField.getText().toString();
                 if (satText.matches("")) { satHours = 0; }
                 else { satHours = Integer.parseInt(satText); }
 
-                sunField = findViewById(R.id.hoursAvailableSunTextfield);
                 String sunText = sunField.getText().toString();
                 if (sunText.matches("")) { sunHours = 0; }
                 else { sunHours = Integer.parseInt(sunText); }
 
                 // getting student from global variable student.
-                Student student = application.student;
+                //Student student = application.student; ALREADY DONE EARLIER
 
                 try {
                     controller.updateAvailabilities(student, sunHours, mondayHours, tuesdayHours, wedHours, thurHours, friHours, satHours);
