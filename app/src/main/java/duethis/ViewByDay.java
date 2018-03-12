@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -74,6 +75,23 @@ public class ViewByDay extends AppCompatActivity {
             }
         });
 
+
+
+        Button addAssignmentButton = findViewById(R.id.addAssignmentButton);
+        addAssignmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewByDay.this, AssignmentActivity.class));
+            }
+        });
+
+        Button addEventButton = findViewById(R.id.addEventButton);
+        addEventButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ViewByDay.this, EventActivity.class));
+            }
+        });
 
     }
 
