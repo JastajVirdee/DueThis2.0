@@ -56,6 +56,7 @@
         android:layout_marginTop="24dp"
         android:onClick="showTimePickerDialog"
         android:text="Due Time"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/assignmentWeightTextfield" />
 
@@ -67,6 +68,7 @@
         android:layout_marginTop="24dp"
         android:onClick="showDatePickerDialog"
         android:text="Due Date"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/assignmentWeightTextfield" />
 
@@ -92,41 +94,41 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:layout_marginEnd="24dp"
         android:layout_marginStart="16dp"
         android:background="@android:color/holo_red_dark"
         android:text="Delete"
         android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/assignmentSubmitButton"
+        app:layout_constraintEnd_toEndOf="@+id/assignmentDoneCheckBox"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/assignmentSubmitButton"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="200"
-        android:layout_height="100"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="32dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
         android:background="@android:color/holo_green_dark"
         android:text="Submit"
         android:textColor="@android:color/white"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/assignmentEstimatedTimeTextfield"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/assignmentDoneCheckBox"
+        app:layout_constraintTop_toBottomOf="@+id/assignmentDoneCheckBox" />
 
     <CheckBox
         android:id="@+id/assignmentDoneCheckBox"
-        android:layout_width="77dp"
+        android:layout_width="111dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:text="Done"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/assignmentEstimatedTimeTextfield" />
 
