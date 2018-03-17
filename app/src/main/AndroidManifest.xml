@@ -26,6 +26,8 @@
         <activity android:name=".EditAssignmentActivity" />
         <activity android:name=".EditEventActivity" />
         <activity android:name=".ViewByDay" />
+        <activity android:name=".SelectFilter" />
+        <activity android:name=".ViewAssignmentList"></activity>
     </application>
 
 </manifest>

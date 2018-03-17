@@ -99,6 +99,14 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
         });
 
 
+        //View Assignments/Exams
+        Button viewAssignmentExamButton = findViewById(R.id.mainViewAssignmentExam);
+        viewAssignmentExamButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SelectFilter.class));
+            }
+        });
     }
 
     public void showDatePickerDialog(View v) {

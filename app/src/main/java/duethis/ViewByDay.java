@@ -50,7 +50,7 @@ public class ViewByDay extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Assignment assignment = assignmentList.get(position);
-                Intent intent = new Intent(ViewByDay.this, EditAssignmentActivity.class); //TODO: change to editAssignmentActivity
+                Intent intent = new Intent(ViewByDay.this, EditAssignmentActivity.class);
                 String assignmentId = assignment.getId();
                 intent.putExtra("AssignmentID", assignmentId);
                 startActivity(intent);
@@ -68,7 +68,7 @@ public class ViewByDay extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Event event = eventList.get(position);
-                Intent intent = new Intent(ViewByDay.this, EditEventActivity.class); //TODO: change to editEventActivity
+                Intent intent = new Intent(ViewByDay.this, EditEventActivity.class);
                 String eventId = event.getId();
                 intent.putExtra("EventID", eventId);
                 startActivity(intent);
@@ -118,9 +118,4 @@ public class ViewByDay extends AppCompatActivity {
         }
         return eventStrings;
     }
-
-
-
-
-
 }
