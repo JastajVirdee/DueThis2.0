@@ -1,5 +1,10 @@
 package duethis;
 
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.SQLException;
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,7 +53,13 @@ public class LoginActivityNew extends AppCompatActivity {
         // used to get global student variable
         final DueThisApplication application = (DueThisApplication) this.getApplication();
 
-        String path = getApplicationContext().getFilesDir() + "/duethis.db";
+        try {
+            DriverManager.registerDriver((Driver) Class.forName("org.sqldroid.SQLDroidDriver").newInstance());
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to register SQLDroidDriver");
+        }
+
+        String path = "jdbc:sqldroid:" + getApplicationContext().getFilesDir() + "/duethis_.db";
         System.out.println(path);
 
         SQLiteIntegration persistence = new SQLiteIntegration();
