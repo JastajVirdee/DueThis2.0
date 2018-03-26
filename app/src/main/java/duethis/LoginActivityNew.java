@@ -17,9 +17,10 @@ import controller.InvalidInputException;
 */
 
 import model.Student;
+import persistence.SQLiteIntegration;
 
 
-public class LoginActivityNew  extends AppCompatActivity {
+public class LoginActivityNew extends AppCompatActivity {
 
     private EditText unameField;
     private EditText pwordField;
@@ -39,8 +40,7 @@ public class LoginActivityNew  extends AppCompatActivity {
 
     //@RequiresApi(api = Build.VERSION_CODES.O)
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_new);
         getSupportActionBar().setTitle("DueThis Login");
@@ -48,6 +48,17 @@ public class LoginActivityNew  extends AppCompatActivity {
         // used to get global student variable
         final DueThisApplication application = (DueThisApplication) this.getApplication();
 
+        String path = getApplicationContext().getFilesDir() + "/duethis.db";
+        System.out.println(path);
+
+        SQLiteIntegration persistence = new SQLiteIntegration();
+        persistence.setPersistenceFilename(path);
+
+        try {
+            persistence.loadPersistence();
+        } catch (UnsatisfiedLinkError e) {
+            System.out.println("Couldn't find libsqlitejdbc.so");
+        }
 
         // Click Register Button
         Button registerButton = findViewById(R.id.registerButton);
@@ -61,11 +72,9 @@ public class LoginActivityNew  extends AppCompatActivity {
 
         // Click Login Button
         Button loginSubmitButton = findViewById(R.id.loginSubmitButton);
-        loginSubmitButton.setOnClickListener(new View.OnClickListener()
-        {
+        loginSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 unameField = findViewById(R.id.loginUsernameField);
                 String unameText = unameField.getText().toString();
 
@@ -73,19 +82,18 @@ public class LoginActivityNew  extends AppCompatActivity {
                 String pwordText = pwordField.getText().toString();
 
                 //application.student = null;
-                try{
+                try {
                     //Student s = acctController.logIn(unameText, pwordText);
-                    student = application.controllerAccount.logIn(unameText,pwordText);
+                    student = application.controllerAccount.logIn(unameText, pwordText);
                     application.student = student;
-                }
-                catch (controller.InvalidInputException e) {
+                } catch (controller.InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }
 
-                if(student != null) // Successful
+                if (student != null) // Successful
                 {
                     //TODO: Load data from persistence
-                    Tools.exceptionToast(getApplicationContext(), "Login successful!\n  Welcome "+ unameText);
+                    Tools.exceptionToast(getApplicationContext(), "Login successful!\n  Welcome " + unameText);
                     startActivity(new Intent(LoginActivityNew.this, MainActivity.class));
                 }
                 // no else needed because error is already caught earlier
