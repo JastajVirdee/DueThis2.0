@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.InvalidInputException;
 import model.Assignment;
 import model.Student;
 
@@ -41,7 +42,8 @@ public class ViewAssignmentList extends AppCompatActivity {
             getSupportActionBar().setTitle("View Assignments");
 
         Intent parameters = getIntent();
-        boolean all_students = parameters.getBooleanExtra("all_students", true);
+        boolean all_students = parameters.getBooleanExtra("all_students", false);
+        boolean by_course = parameters.getBooleanExtra("by_course", false);
 
         Student student = DueThisApplication.student;
         List<Assignment> assignments = new ArrayList<>();
@@ -49,6 +51,13 @@ public class ViewAssignmentList extends AppCompatActivity {
         // implement the backend filtering methods here. you should be able to do
         if (all_students) {
             assignments = student.getAssignments();
+        } else if (by_course) {
+            String courseName = parameters.getStringExtra("course_name");
+            try {
+                assignments = DueThisApplication.controller.showAssignmentsByCourse(student, courseName);
+            } catch (InvalidInputException e) {
+                System.out.println(e.getMessage());
+            }
         }
 
 
