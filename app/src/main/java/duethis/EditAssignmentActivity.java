@@ -77,7 +77,6 @@ public class EditAssignmentActivity extends EditActivity {
             estimatedTimeOfCompletionField.setText("", TextView.BufferType.EDITABLE);
         }
 
-
         Date assignmentDueDate = assignmentToModify.getDueDate();
         calendarAssignmentDueDate.setTime(assignmentDueDate);
 
@@ -85,11 +84,8 @@ public class EditAssignmentActivity extends EditActivity {
         final CheckBox completedField = findViewById(R.id.assignmentDoneCheckBox);
         completedField.setChecked(assignmentToModify.getIsCompleted());
 
-
         // Click Submit
         Button submitButton = findViewById(R.id.assignmentSubmitButton);
-
-
         final Assignment assignmentOnSubmit = assignmentToModify;
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -129,11 +125,10 @@ public class EditAssignmentActivity extends EditActivity {
                 boolean successful = false;
                 // Submit assignment call to backend
                 try {
-                    controller.editAssignment(assignmentOnSubmit, name, course, date, weight, duration, student);
+                    successful = controller.editAssignment(assignmentOnSubmit, name, course, date, weight, duration, student);
                     if (isCompleted) {
                         controller.completeAssignment(student, assignmentOnSubmit);
                     }
-                    successful = true;
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }

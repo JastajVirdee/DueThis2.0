@@ -39,7 +39,7 @@ public class LoginActivityNew extends AppCompatActivity {
             throw new RuntimeException("Failed to register SQLDroidDriver");
         }
 
-        String path = "jdbc:sqldroid:" + getApplicationContext().getFilesDir() + "/duethis1.db";
+        String path = "jdbc:sqldroid:" + getApplicationContext().getFilesDir() + "/duethis3.db";
         System.out.println(path);
 
         SQLiteInterface.setFilename(path);
@@ -52,6 +52,22 @@ public class LoginActivityNew extends AppCompatActivity {
             e.printStackTrace();
             System.out.println("Couldn't find libsqlitejdbc.so");
         }
+
+        // FIXME: Remove when done debugging but keep if needed
+        /*System.out.println("Assignments : " + Application.getInstance().getAssignments().size());
+        for (Assignment a : Application.getInstance().getAssignments()) {
+            System.out.println(a);
+        }
+
+        System.out.println("Events : " + Application.getInstance().getEvents().size());
+        for (Event e : Application.getInstance().getEvents()) {
+            System.out.println(e);
+        }
+
+        System.out.println("Students : " + Application.getInstance().getStudents().size());
+        for (Student s : Application.getInstance().getStudents()) {
+            System.out.println(s);
+        }*/
 
         // Click Register Button
         Button registerButton = findViewById(R.id.registerButton);
