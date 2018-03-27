@@ -16,14 +16,13 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_experienced_novice);
+
+        if (getSupportActionBar() != null)
         getSupportActionBar().setTitle("Set Experienced or Novice");
 
-        // used to get global student variable.
-        final DueThisApplication application = (DueThisApplication) this.getApplication();
-
         // Setting the experience by default here.
-        Student student = application.student;
-        TextView textView = (TextView) findViewById(R.id.experienceStatus);
+        Student student = duethis.DueThisApplication.student;
+        TextView textView = findViewById(R.id.experienceStatus);
 
         if (student.getExperienced()) {
             textView.setText("Experienced Student");
@@ -36,16 +35,12 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
 
-        // used to get global student variable.
-        final DueThisApplication application = (DueThisApplication) this.getApplication();
-
         // Setting the experience by default here.
-        Student student = application.student;
+        Student student = duethis.DueThisApplication.student;
 
-        TextView textView = (TextView) findViewById(R.id.experienceStatus);
+        TextView textView = findViewById(R.id.experienceStatus);
 
         // - FIXME Proper controller updated required for persistence to work
-
         AccountController accountController = new AccountController();
 
         // Check which radio button was clicked
@@ -67,7 +62,7 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
 
                 break;
             case R.id.radio_novice:
-                   if (checked) {
+                if (checked) {
                     if (!student.getExperienced())
                         textView.setText("You are already a novice student.");
                     else {

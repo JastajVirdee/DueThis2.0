@@ -1,10 +1,7 @@
 package duethis;
 
-import android.app.DatePickerDialog;
 import android.app.DialogFragment;
-import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,7 +11,6 @@ import android.widget.TextView;
 
 import java.sql.Time;
 import java.util.Calendar;
-import java.sql.Date;
 import java.util.List;
 
 import controller.DueThisController;
@@ -23,8 +19,6 @@ import model.Event;
 import model.Student;
 
 public class EditEventActivity extends EditActivity {
-    DialogFragment fromTimeFragment = new TimePicker();
-    DialogFragment toTimeFragment = new TimePicker();
     private Calendar calendarEventStartDate = Calendar.getInstance();
     private Calendar calendarEventStopDate = Calendar.getInstance();
     final private String fromTimeField = "fromTimeField";
@@ -37,18 +31,16 @@ public class EditEventActivity extends EditActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        getSupportActionBar().setTitle("Edit Event");
 
-        // used to get global student variable.
-        final DueThisApplication application = (DueThisApplication) this.getApplication();
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("Edit Event");
 
         // getting the event id from a bundle.
-
         Intent parameters = getIntent();
         String eventId = parameters.getStringExtra("EventID");
 
 
-        final Student student = application.student;
+        final Student student = duethis.DueThisApplication.student;
 
         List<Event> events = student.getEvents();
 
@@ -61,7 +53,6 @@ public class EditEventActivity extends EditActivity {
             }
         }
 
-
         // in practice this should not happen but just in case.
         if (eventToModify == null) {
             startActivity(new Intent(EditEventActivity.this, MainActivity.class));
@@ -69,11 +60,11 @@ public class EditEventActivity extends EditActivity {
         }
 
 
-        EditText nameText = (EditText) findViewById(R.id.eventNameTextfield);
+        EditText nameText = findViewById(R.id.eventNameTextfield);
         nameText.setText(eventToModify.getName(), TextView.BufferType.EDITABLE);
 
 
-        final CheckBox checkBox = (CheckBox) findViewById(R.id.eventRepeatCheckBox);
+        final CheckBox checkBox = findViewById(R.id.eventRepeatCheckBox);
         checkBox.setChecked(eventToModify.getRepeatedWeekly());
 
         java.sql.Time eventStartDate = eventToModify.getStartTime();
@@ -93,13 +84,13 @@ public class EditEventActivity extends EditActivity {
                 boolean successful = false;
                 try {
                     successful = controller.removeEvent(student, eventOnSubmit);
-                }catch(InvalidInputException e){
-                    Tools.exceptionToast(getApplicationContext(),"Can't remove event");
+                } catch (InvalidInputException e) {
+                    Tools.exceptionToast(getApplicationContext(), "Can't remove event");
                 }
 
-                if(successful){
+                if (successful) {
                     startActivity(new Intent(EditEventActivity.this, MainActivity.class));
-                    Tools.exceptionToast(getApplicationContext(),"Event deleted");
+                    Tools.exceptionToast(getApplicationContext(), "Event deleted");
                 }
             }
         });
@@ -109,19 +100,17 @@ public class EditEventActivity extends EditActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText nameField = (EditText) findViewById(R.id.eventNameTextfield);
+                final EditText nameField = findViewById(R.id.eventNameTextfield);
                 String name = nameField.getText().toString();
                 java.sql.Date date = new java.sql.Date(calendarEventStartDate.getTimeInMillis());
                 Time startTime = new Time(calendarEventStartDate.getTimeInMillis());
                 Time endTime = new Time(calendarEventStopDate.getTimeInMillis());
-                final CheckBox checkBox = (CheckBox) findViewById(R.id.eventRepeatCheckBox);
+                final CheckBox checkBox = findViewById(R.id.eventRepeatCheckBox);
                 boolean repeatWeekly = checkBox.isChecked();
 
-                Student student = application.student;
                 boolean successful = false;
                 try {
-                    boolean created = controller.editEvent(eventOnSubmit, name, date, startTime, endTime, repeatWeekly);
-                    successful = true;
+                    successful = controller.editEvent(eventOnSubmit, name, date, startTime, endTime, repeatWeekly);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }

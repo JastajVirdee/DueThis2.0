@@ -27,10 +27,9 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignement);
-        getSupportActionBar().setTitle("Add Assignment");
 
-        // used to get global student variable.
-        final DueThisApplication application = (DueThisApplication) this.getApplication();
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("Add Assignment");
 
         Button deleteButton = findViewById(R.id.assignmentDeleteButton);
         deleteButton.setVisibility(View.GONE);
@@ -42,15 +41,15 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
             @Override
             public void onClick(View v) {
                 // Get fields from assignment form
-                final EditText nameField = (EditText) findViewById(R.id.assignmentNameTextfield);
+                final EditText nameField = findViewById(R.id.assignmentNameTextfield);
                 String name = nameField.getText().toString();
 
-                final EditText courseField = (EditText) findViewById(R.id.assignmentCourseTextfield);
+                final EditText courseField = findViewById(R.id.assignmentCourseTextfield);
                 String course = courseField.getText().toString();
 
-                final EditText weightField = (EditText) findViewById(R.id.assignmentWeightTextfield);
+                final EditText weightField = findViewById(R.id.assignmentWeightTextfield);
                 float weight = !weightField.getText().toString().isEmpty() ? Float.parseFloat(weightField.getText().toString()) : 0;
-                final EditText estimatedTimeOfCompletionField = (EditText) findViewById(R.id.assignmentEstimatedTimeTextfield);
+                final EditText estimatedTimeOfCompletionField = findViewById(R.id.assignmentEstimatedTimeTextfield);
 
                 long estimatedTimeOfCompletion = !estimatedTimeOfCompletionField.getText().toString().isEmpty() ? Long.parseLong(estimatedTimeOfCompletionField.getText().toString()) : 0;
 
@@ -58,13 +57,12 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 java.sql.Date date = new java.sql.Date(c.getTimeInMillis());
 
                 // getting student from global variable student.
-                Student student = application.student;
+                Student student = duethis.DueThisApplication.student;
 
                 boolean successful = false;
                 // Submit assignment call to backend
                 try {
-                    boolean result = DueThisApplication.controller.createAssignment(name, course, date, weight, duration, student);
-                    successful = true;
+                    successful = DueThisApplication.controller.createAssignment(name, course, date, weight, duration, student);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }
@@ -99,5 +97,3 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
         c.set(Calendar.MINUTE, hour);
     }
 }
-
-

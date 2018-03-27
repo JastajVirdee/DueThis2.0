@@ -9,6 +9,6 @@ import android.support.v7.app.AppCompatActivity;
  * The interface that a edit assignment or edit event has to comply with.
  */
 
-public abstract class EditActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener{
+public abstract class EditActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
 }

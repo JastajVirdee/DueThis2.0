@@ -13,16 +13,15 @@ import android.widget.Toast;
 
 import controller.InvalidInputException;
 
-public class MainActivity extends AppCompatActivity  implements DatePickerDialog.OnDateSetListener {
+public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setTitle("Home");
 
-        // used to get global student variable.
-        final DueThisApplication application = (DueThisApplication) this.getApplication();
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("Home");
 
         // Click Add Assignment
         Button addAssignmentButton = findViewById(R.id.mainAddAssignmentButton);
@@ -64,28 +63,28 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
         // Delete account
         Button deleteAccountButton = findViewById(R.id.mainDeleteAccountButton);
         deleteAccountButton.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
+            @Override
+            public void onClick(View v) {
 
-                   new AlertDialog.Builder(MainActivity.this)
-                           .setTitle("Delete Account")
-                           .setMessage("Do you really want to permanently delete this account?")
-                           .setIcon(android.R.drawable.ic_dialog_alert)
-                           .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle("Delete Account")
+                        .setMessage("Do you really want to permanently delete this account?")
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
-                               public void onClick(DialogInterface dialog, int whichButton) {
-                                   try {
-                                       application.controllerAccount.deleteAccount(application.student.getUsername(), application.student.getPassword());
-                                   } catch (InvalidInputException e) {
-                                       e.printStackTrace();
-                                   }
-                                   application.student = null;
-                                   startActivity(new Intent(MainActivity.this, LoginActivityNew.class));
-                                   Toast.makeText(getApplicationContext(), "User account deleted", Toast.LENGTH_SHORT).show();
-                               }
-                           })
-                           .setNegativeButton(android.R.string.no, null).show();
-               }
+                            public void onClick(DialogInterface dialog, int whichButton) {
+                                try {
+                                    duethis.DueThisApplication.controllerAccount.deleteAccount(duethis.DueThisApplication.student.getUsername(), duethis.DueThisApplication.student.getPassword());
+                                } catch (InvalidInputException e) {
+                                    e.printStackTrace();
+                                }
+                                duethis.DueThisApplication.student = null;
+                                startActivity(new Intent(MainActivity.this, LoginActivityNew.class));
+                                Toast.makeText(getApplicationContext(), "User account deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, null).show();
+            }
         });
 
         // Logout Button
@@ -117,7 +116,7 @@ public class MainActivity extends AppCompatActivity  implements DatePickerDialog
     @Override
     public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
         Intent intent = new Intent(MainActivity.this, ViewByDay.class);
-        Bundle parameters =  new Bundle();
+        Bundle parameters = new Bundle();
         parameters.putInt("year", year);
         parameters.putInt("month", month);
         parameters.putInt("day", day);

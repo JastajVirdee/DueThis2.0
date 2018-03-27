@@ -1,14 +1,14 @@
 package duethis;
 
-import java.sql.DriverManager;
-import java.sql.Driver;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.sql.Driver;
+import java.sql.DriverManager;
 
 import controller.InvalidInputException;
 import model.Student;
@@ -27,11 +27,12 @@ public class LoginActivityNew extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_new);
-        getSupportActionBar().setTitle("DueThis Login");
 
-        // used to get global student variable
-        final DueThisApplication application = (DueThisApplication) this.getApplication();
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("DueThis Login");
 
+        // - Persistence initialisation
+        // - FIXME Is there a hook for killing the application? This way the SQL connection could be properly closed
         try {
             DriverManager.registerDriver((Driver) Class.forName("org.sqldroid.SQLDroidDriver").newInstance());
         } catch (Exception e) {
@@ -60,7 +61,6 @@ public class LoginActivityNew extends AppCompatActivity {
             }
         });
 
-
         // Click Login Button
         Button loginSubmitButton = findViewById(R.id.loginSubmitButton);
         loginSubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -75,8 +75,8 @@ public class LoginActivityNew extends AppCompatActivity {
                 //application.student = null;
                 try {
                     //Student s = acctController.logIn(unameText, pwordText);
-                    student = application.controllerAccount.logIn(unameText, pwordText);
-                    application.student = student;
+                    student = duethis.DueThisApplication.controllerAccount.logIn(unameText, pwordText);
+                    duethis.DueThisApplication.student = student;
                 } catch (controller.InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }

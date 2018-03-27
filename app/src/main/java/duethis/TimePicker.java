@@ -8,10 +8,7 @@ import android.text.format.DateFormat;
 
 import java.util.Calendar;
 
-/**
- * Created by Rahul on 2/10/2018.
- */
-
+// Created by Rahul on 2/10/2018.
 
 public class TimePicker extends DialogFragment {
 
@@ -27,9 +24,8 @@ public class TimePicker extends DialogFragment {
                 DateFormat.is24HourFormat(getActivity()));
     }
 
-    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+    // - TODO: Is this needed?
+    /*public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // Do something with the time chosen by the user
-    }
-
-
+    }*/
 }
