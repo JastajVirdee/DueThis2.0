@@ -19,12 +19,8 @@ import controller.InvalidInputException;
 import model.Student;
 
 
-
-
 public class AssignmentActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
-
     Calendar c = Calendar.getInstance();
-
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -53,11 +49,10 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                 String course = courseField.getText().toString();
 
                 final EditText weightField = (EditText) findViewById(R.id.assignmentWeightTextfield);
-
                 float weight = !weightField.getText().toString().isEmpty() ? Float.parseFloat(weightField.getText().toString()) : 0;
-
                 final EditText estimatedTimeOfCompletionField = (EditText) findViewById(R.id.assignmentEstimatedTimeTextfield);
-                long estimatedTimeOfCompletion = !estimatedTimeOfCompletionField.getText().toString().isEmpty() ? Long.parseLong(estimatedTimeOfCompletionField.getText().toString()): 0;
+
+                long estimatedTimeOfCompletion = !estimatedTimeOfCompletionField.getText().toString().isEmpty() ? Long.parseLong(estimatedTimeOfCompletionField.getText().toString()) : 0;
 
                 Duration duration = Duration.ofHours(estimatedTimeOfCompletion);
                 java.sql.Date date = new java.sql.Date(c.getTimeInMillis());
@@ -71,10 +66,10 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
                     boolean result = DueThisApplication.controller.createAssignment(name, course, date, weight, duration, student);
                     successful = true;
                 } catch (InvalidInputException e) {
-                    Tools.exceptionToast(getApplicationContext(),e.getMessage());
+                    Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }
 
-                if(successful){
+                if (successful) {
                     startActivity(new Intent(AssignmentActivity.this, MainActivity.class));
                 }
             }
@@ -92,7 +87,7 @@ public class AssignmentActivity extends AppCompatActivity implements DatePickerD
     }
 
     @Override
-    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day){
+    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
         c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
         c.set(Calendar.DATE, day);

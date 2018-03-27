@@ -1,47 +1,26 @@
 package duethis;
 
 import java.sql.DriverManager;
-import java.sql.Connection;
 import java.sql.Driver;
-import java.sql.SQLException;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-/*
-//****Not needed anymore****
-import controller.DueThisController;
-import controller.AccountController;
 import controller.InvalidInputException;
-*/
-
 import model.Student;
-import persistence.SQLiteIntegration;
-
+import persistence.SQLiteInterface;
 
 public class LoginActivityNew extends AppCompatActivity {
-
     private EditText unameField;
     private EditText pwordField;
-
     Student student = null;
 
-    /*
-    // ****Not needed anymore****
-    // getting controller stuff
-    DueThisController controller = new DueThisController();
-    AccountController acctController = new AccountController();
-    */
-
-
-    // TODO: Remove data from application. Data related to student will be loaded from persistence later.
-
+    // TODO: Remove data from application.
+    // FIXME: Is this the main activity that is being launched? If so, then, loading happens here.
 
     //@RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -59,14 +38,15 @@ public class LoginActivityNew extends AppCompatActivity {
             throw new RuntimeException("Failed to register SQLDroidDriver");
         }
 
-        String path = "jdbc:sqldroid:" + getApplicationContext().getFilesDir() + "/duethis_.db";
+        String path = "jdbc:sqldroid:" + getApplicationContext().getFilesDir() + "/duethis1.db";
         System.out.println(path);
 
-        SQLiteIntegration persistence = new SQLiteIntegration();
-        persistence.setPersistenceFilename(path);
-
+        SQLiteInterface.setFilename(path);
         try {
-            persistence.loadPersistence();
+            SQLiteInterface.ensureConnection();
+            SQLiteInterface.load();
+        } catch (InvalidInputException e) {
+            System.out.println(e.getMessage());
         } catch (UnsatisfiedLinkError e) {
             System.out.println("Couldn't find libsqlitejdbc.so");
         }

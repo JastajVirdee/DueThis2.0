@@ -50,6 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
                 boolean successful = false;
 
                 try {
+
                     successful = application.controllerAccount.createAccount(userName, password,
                                                                 email, isCompleted,
                                                             0, 0,
