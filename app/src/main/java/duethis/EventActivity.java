@@ -23,26 +23,22 @@ import model.Student;
 public class EventActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
 
+    final private String fromTimeField = "fromTimeField";
+    final private String toTimeField = "toTimeField";
     DialogFragment fromTimeFragment = new TimePicker();
     DialogFragment toTimeFragment = new TimePicker();
-    final private String  fromTimeField = "fromTimeField";
-    final private String toTimeField = "toTimeField";
-    private String lastClicked = fromTimeField;
-
     Calendar start = Calendar.getInstance();
     Calendar end = Calendar.getInstance();
-
     DueThisController controller = new DueThisController();
-
+    private String lastClicked = fromTimeField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
-        getSupportActionBar().setTitle("Create Event");
 
-        // used to get global student variable.
-        final DueThisApplication application = (DueThisApplication) this.getApplication();
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("Create Event");
 
         Button deleteButton = findViewById(R.id.eventDeleteButton);
         deleteButton.setVisibility(View.GONE);
@@ -52,23 +48,22 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final EditText nameField = (EditText) findViewById(R.id.eventNameTextfield);
+                final EditText nameField = findViewById(R.id.eventNameTextfield);
                 String name = nameField.getText().toString();
                 Date date = new Date(start.getTimeInMillis());
                 Time startTime = new Time(start.getTimeInMillis());
                 Time endTime = new Time(end.getTimeInMillis());
-                final CheckBox checkBox = (CheckBox) findViewById(R.id.eventRepeatCheckBox);
+                final CheckBox checkBox = findViewById(R.id.eventRepeatCheckBox);
                 boolean repeatWeekly = checkBox.isChecked();
 
-                Student student = application.student;
+                Student student = duethis.DueThisApplication.student;
                 boolean successful = false;
-                try{
-                    boolean created = controller.createEvent(student, name, date, startTime, endTime, repeatWeekly);
-                    successful = true;
-                }catch (InvalidInputException e) {
-                    Tools.exceptionToast(getApplicationContext(),e.getMessage());
+                try {
+                    successful = controller.createEvent(student, name, date, startTime, endTime, repeatWeekly);
+                } catch (InvalidInputException e) {
+                    Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }
-                if(successful){
+                if (successful) {
                     startActivity(new Intent(EventActivity.this, MainActivity.class));
                 }
             }
@@ -80,7 +75,7 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
             @Override
             public void onClick(View v) {
                 lastClicked = fromTimeField;
-                if(getFragmentManager().findFragmentByTag("fromTimePicker") == null){
+                if (getFragmentManager().findFragmentByTag("fromTimePicker") == null) {
                     fromTimeFragment.show(getFragmentManager(), "fromTimePicker");
                 }
             }
@@ -90,9 +85,9 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
         Button toTimeButton = findViewById(R.id.eventToTimeButton);
         toTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+            public void onClick(View v) {
                 lastClicked = toTimeField;
-                if(getFragmentManager().findFragmentByTag("toTimePicker") == null){
+                if (getFragmentManager().findFragmentByTag("toTimePicker") == null) {
                     toTimeFragment.show(getFragmentManager(), "toTimePicker");
                 }
             }
@@ -105,7 +100,7 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
     }
 
     @Override
-    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day){
+    public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
         start.set(Calendar.YEAR, year);
         start.set(Calendar.MONTH, month);
         start.set(Calendar.DATE, day);
@@ -116,13 +111,12 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
 
     @Override
     public void onTimeSet(android.widget.TimePicker timePicker, int hour, int minute) {
-        if(lastClicked.equals(fromTimeField)){
+        if (lastClicked.equals(fromTimeField)) {
             start.set(Calendar.HOUR_OF_DAY, hour);
             start.set(Calendar.MINUTE, minute);
-        }else{
+        } else {
             end.set(Calendar.HOUR_OF_DAY, hour);
             end.set(Calendar.MINUTE, minute);
         }
-
     }
 }

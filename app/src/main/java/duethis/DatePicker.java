@@ -3,17 +3,11 @@ package duethis;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-
-import android.os.Build;
 import android.os.Bundle;
 
 import java.util.Calendar;
 
-
-/**
- * Created by Rahul on 2/10/2018.
- */
-
+// Created by Rahul on 2/10/2018.
 
 public class DatePicker extends DialogFragment {
 
@@ -29,8 +23,8 @@ public class DatePicker extends DialogFragment {
         return new DatePickerDialog(getActivity(), (DatePickerDialog.OnDateSetListener) getActivity(), year, month, day);
     }
 
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the date chosen by the user
-    }
-
+    // TODO: Use this?
+    //public void onDateSet(DatePicker view, int year, int month, int day) {
+    // Do something with the date chosen by the user
+    //}
 }

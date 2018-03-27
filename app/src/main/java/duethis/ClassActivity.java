@@ -1,11 +1,9 @@
 package duethis;
 
 import android.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-
-//import duethis.duethis.R;
 
 public class ClassActivity extends AppCompatActivity {
 
@@ -13,7 +11,9 @@ public class ClassActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_class);
-        getSupportActionBar().setTitle("Add Course");
+
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("Add Course");
     }
 
     public void showDatePickerDialog(View v) {

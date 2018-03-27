@@ -1,33 +1,25 @@
 package duethis;
 
-/**
- * Created by Oli on February-142018.
- */
+// Created by Oli on February-142018.
 
 import android.app.DatePickerDialog;
-import android.app.DialogFragment;
-import android.content.Intent;
-import android.os.Bundle;
-import android.app.Fragment;
-import android.widget.TextView;
-import android.widget.DatePicker;
 import android.app.Dialog;
-import android.content.Context;
-import android.app.Activity;
-import java.util.Calendar;
-
+import android.app.DialogFragment;
+import android.os.Bundle;
+import android.widget.DatePicker;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         Bundle b = this.getArguments();
         int year = b.getInt("year");
         int month = b.getInt("month");
         int day = b.getInt("day");
 
-        Activity activity = getActivity();
+        // FIXME: Is getActivity needed for something?
+        getActivity();
         DatePickerDialog datePicker = new DatePickerDialog(getActivity(), this, year, month, day);
-        datePicker.setOnDateSetListener((EditActivity)getActivity());
+        datePicker.setOnDateSetListener((EditActivity) getActivity());
         return datePicker;
     }
 

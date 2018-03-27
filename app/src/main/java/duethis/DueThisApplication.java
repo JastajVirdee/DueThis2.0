@@ -1,15 +1,11 @@
 package duethis;
 
-/**
- * Created by Oli on February-132018.
- */
-import android.accounts.Account;
+// Created by Oli on February-132018.
+
 import android.app.Application;
-import java.util.UUID;
 
-import controller.DueThisController;
 import controller.AccountController;
-
+import controller.DueThisController;
 import model.Student;
 
 public class DueThisApplication extends Application {
@@ -18,10 +14,10 @@ public class DueThisApplication extends Application {
     public static DueThisController controller;
     public static AccountController controllerAccount;
 
-    public DueThisApplication(){
+    public DueThisApplication() {
         super();
         // Global Application used to store students, events, assignments
-        model.Application application = model.Application.getInstance();
+        model.Application.getInstance();
 
         // Controller which manipulates domain model objects.
         controller = new DueThisController();

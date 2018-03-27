@@ -2,20 +2,20 @@ package duethis;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import controller.DueThisController;
-import controller.InvalidInputException;
 import model.Student;
 
 public class HoursAvailableActivity extends AppCompatActivity {
 
+    DueThisController controller = new DueThisController();
     private EditText mondayField;
     private EditText tuesdayField;
     private EditText wedField;
@@ -23,7 +23,6 @@ public class HoursAvailableActivity extends AppCompatActivity {
     private EditText friField;
     private EditText satField;
     private EditText sunField;
-
     private int mondayHours;
     private int tuesdayHours;
     private int wedHours;
@@ -32,49 +31,45 @@ public class HoursAvailableActivity extends AppCompatActivity {
     private int satHours;
     private int sunHours;
 
-    DueThisController controller = new DueThisController();
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hours_available);
-        getSupportActionBar().setTitle("Set Availability");
 
-        // used to get global student variable.
-        final DueThisApplication application = (DueThisApplication) this.getApplication();
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("Set Availability");
 
-        final Student student = application.student;
+        final Student student = duethis.DueThisApplication.student;
 
         // Setting text in text fields to what they currently are
-        mondayField = (EditText) findViewById(R.id.hoursAvailableMonTextfield);
+        mondayField = findViewById(R.id.hoursAvailableMonTextfield);
         mondayHours = student.getMondayAvailability();
         mondayField.setText(Integer.toString(mondayHours), TextView.BufferType.EDITABLE);
 
-        tuesdayField = (EditText) findViewById(R.id.hoursAvailableTueTextfield);
+        tuesdayField = findViewById(R.id.hoursAvailableTueTextfield);
         tuesdayHours = student.getTuesdayAvailability();
         tuesdayField.setText(Integer.toString(tuesdayHours), TextView.BufferType.EDITABLE);
 
-        wedField = (EditText) findViewById(R.id.hoursAvailableWedTextfield);
+        wedField = findViewById(R.id.hoursAvailableWedTextfield);
         wedHours = student.getWednesdayAvailability();
         wedField.setText(Integer.toString(wedHours), TextView.BufferType.EDITABLE);
 
-        thurField = (EditText) findViewById(R.id.hoursAvailableThurTextfield);
+        thurField = findViewById(R.id.hoursAvailableThurTextfield);
         thurHours = student.getThursdayAvailability();
         thurField.setText(Integer.toString(thurHours), TextView.BufferType.EDITABLE);
 
-        friField = (EditText) findViewById(R.id.hoursAvailableFriTextfield);
+        friField = findViewById(R.id.hoursAvailableFriTextfield);
         friHours = student.getFridayAvailability();
         friField.setText(Integer.toString(friHours), TextView.BufferType.EDITABLE);
 
-        satField = (EditText) findViewById(R.id.hoursAvailableSatTextfield);
+        satField = findViewById(R.id.hoursAvailableSatTextfield);
         satHours = student.getSaturdayAvailability();
         satField.setText(Integer.toString(satHours), TextView.BufferType.EDITABLE);
 
-        sunField = (EditText) findViewById(R.id.hoursAvailableSunTextfield);
+        sunField = findViewById(R.id.hoursAvailableSunTextfield);
         sunHours = student.getSundayAvailability();
         sunField.setText(Integer.toString(sunHours), TextView.BufferType.EDITABLE);
-
 
 
         // Click Back
@@ -93,32 +88,53 @@ public class HoursAvailableActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 String mondayText = mondayField.getText().toString();
-                if (mondayText.matches("") ) { mondayHours = 0; }
-                else { mondayHours = Integer.parseInt(mondayText); }
+                if (mondayText.matches("")) {
+                    mondayHours = 0;
+                } else {
+                    mondayHours = Integer.parseInt(mondayText);
+                }
 
                 String tuesdayText = tuesdayField.getText().toString();
-                if (tuesdayText.matches("")) { tuesdayHours = 0; }
-                else { tuesdayHours = Integer.parseInt(tuesdayText); }
+                if (tuesdayText.matches("")) {
+                    tuesdayHours = 0;
+                } else {
+                    tuesdayHours = Integer.parseInt(tuesdayText);
+                }
 
                 String wedText = wedField.getText().toString();
-                if (wedText.matches("")) { wedHours = 0; }
-                else { wedHours = Integer.parseInt(wedText); }
+                if (wedText.matches("")) {
+                    wedHours = 0;
+                } else {
+                    wedHours = Integer.parseInt(wedText);
+                }
 
                 String thurText = thurField.getText().toString();
-                if (thurText.matches("")) { thurHours = 0; }
-                else { thurHours = Integer.parseInt(thurText); }
+                if (thurText.matches("")) {
+                    thurHours = 0;
+                } else {
+                    thurHours = Integer.parseInt(thurText);
+                }
 
                 String friText = friField.getText().toString();
-                if (friText.matches("")) { friHours = 0; }
-                else { friHours = Integer.parseInt(friText); }
+                if (friText.matches("")) {
+                    friHours = 0;
+                } else {
+                    friHours = Integer.parseInt(friText);
+                }
 
                 String satText = satField.getText().toString();
-                if (satText.matches("")) { satHours = 0; }
-                else { satHours = Integer.parseInt(satText); }
+                if (satText.matches("")) {
+                    satHours = 0;
+                } else {
+                    satHours = Integer.parseInt(satText);
+                }
 
                 String sunText = sunField.getText().toString();
-                if (sunText.matches("")) { sunHours = 0; }
-                else { sunHours = Integer.parseInt(sunText); }
+                if (sunText.matches("")) {
+                    sunHours = 0;
+                } else {
+                    sunHours = Integer.parseInt(sunText);
+                }
 
                 // getting student from global variable student.
                 //Student student = application.student; ALREADY DONE EARLIER
@@ -127,8 +143,8 @@ public class HoursAvailableActivity extends AppCompatActivity {
                     controller.updateAvailabilities(student, sunHours, mondayHours, tuesdayHours, wedHours, thurHours, friHours, satHours);
                     startActivity(new Intent(HoursAvailableActivity.this, MainActivity.class));
                 } catch (controller.InvalidInputException e) {
-                        Tools.exceptionToast(getApplicationContext(), e.getMessage());
-                    }
+                    Tools.exceptionToast(getApplicationContext(), e.getMessage());
+                }
             }
         });
     }
