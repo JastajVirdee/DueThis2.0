@@ -40,8 +40,8 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
 
-        if(getSupportActionBar() != null)
-        getSupportActionBar().setTitle("Create Event");
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle("Create Event");
 
         Button deleteButton = findViewById(R.id.eventDeleteButton);
         deleteButton.setVisibility(View.GONE);

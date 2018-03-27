@@ -30,7 +30,7 @@ public class EditAssignmentActivity extends EditActivity {
         setContentView(R.layout.activity_assignement);
 
         if (getSupportActionBar() != null)
-        getSupportActionBar().setTitle("Edit Assignment");
+            getSupportActionBar().setTitle("Edit Assignment");
 
         Intent parameters = getIntent();
         String assignmentId = parameters.getStringExtra("AssignmentID");

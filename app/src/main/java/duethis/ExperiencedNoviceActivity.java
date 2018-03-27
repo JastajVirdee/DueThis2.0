@@ -18,7 +18,7 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_experienced_novice);
 
         if (getSupportActionBar() != null)
-        getSupportActionBar().setTitle("Set Experienced or Novice");
+            getSupportActionBar().setTitle("Set Experienced or Novice");
 
         // Setting the experience by default here.
         Student student = duethis.DueThisApplication.student;
