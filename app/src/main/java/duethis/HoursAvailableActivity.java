@@ -15,6 +15,7 @@ import model.Student;
 
 public class HoursAvailableActivity extends AppCompatActivity {
 
+    DueThisController controller = new DueThisController();
     private EditText mondayField;
     private EditText tuesdayField;
     private EditText wedField;
@@ -22,7 +23,6 @@ public class HoursAvailableActivity extends AppCompatActivity {
     private EditText friField;
     private EditText satField;
     private EditText sunField;
-
     private int mondayHours;
     private int tuesdayHours;
     private int wedHours;
@@ -30,8 +30,6 @@ public class HoursAvailableActivity extends AppCompatActivity {
     private int friHours;
     private int satHours;
     private int sunHours;
-
-    DueThisController controller = new DueThisController();
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override

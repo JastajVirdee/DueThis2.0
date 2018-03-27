@@ -19,13 +19,12 @@ import model.Event;
 import model.Student;
 
 public class EditEventActivity extends EditActivity {
-    private Calendar calendarEventStartDate = Calendar.getInstance();
-    private Calendar calendarEventStopDate = Calendar.getInstance();
     final private String fromTimeField = "fromTimeField";
     final private String toTimeField = "toTimeField";
-    private String lastClicked = fromTimeField;
-
     DueThisController controller = new DueThisController();
+    private Calendar calendarEventStartDate = Calendar.getInstance();
+    private Calendar calendarEventStopDate = Calendar.getInstance();
+    private String lastClicked = fromTimeField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

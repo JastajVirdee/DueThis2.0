@@ -17,6 +17,21 @@ import model.Student;
 
 public class ViewAssignmentList extends AppCompatActivity {
 
+    public static ArrayList<String> getAssignmentStringList(List<Assignment> assignments) {
+        ArrayList<String> assignmentStrings = new ArrayList<>();
+
+        for (Assignment a : assignments) {
+            String toDo = "To Do";
+            if (a.isIsCompleted()) {
+                toDo = "Done";
+            }
+
+            assignmentStrings.add("Name: " + a.getName() + ", Course: " + a.getCourse() + " " + toDo);
+        }
+
+        return assignmentStrings;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,20 +73,5 @@ public class ViewAssignmentList extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    public static ArrayList<String> getAssignmentStringList(List<Assignment> assignments) {
-        ArrayList<String> assignmentStrings = new ArrayList<>();
-
-        for (Assignment a : assignments) {
-            String toDo = "To Do";
-            if (a.isIsCompleted()) {
-                toDo = "Done";
-            }
-
-            assignmentStrings.add("Name: " + a.getName() + ", Course: " + a.getCourse() + " " + toDo);
-        }
-
-        return assignmentStrings;
     }
 }

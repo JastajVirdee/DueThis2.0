@@ -23,17 +23,14 @@ import model.Student;
 public class EventActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
 
-    DialogFragment fromTimeFragment = new TimePicker();
-    DialogFragment toTimeFragment = new TimePicker();
     final private String fromTimeField = "fromTimeField";
     final private String toTimeField = "toTimeField";
-    private String lastClicked = fromTimeField;
-
+    DialogFragment fromTimeFragment = new TimePicker();
+    DialogFragment toTimeFragment = new TimePicker();
     Calendar start = Calendar.getInstance();
     Calendar end = Calendar.getInstance();
-
     DueThisController controller = new DueThisController();
-
+    private String lastClicked = fromTimeField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

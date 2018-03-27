@@ -24,6 +24,31 @@ import static duethis.DueThisApplication.student;
 
 public class ViewByDay extends AppCompatActivity {
 
+    public static ArrayList<String> getAssignmentStringList(List<Assignment> assignments) {
+        ArrayList<String> assignmentStrings = new ArrayList<>();
+
+        for (Assignment a : assignments) {
+            String toDo = "To Do";
+            if (a.isIsCompleted()) {
+                toDo = "Done";
+            }
+
+            assignmentStrings.add("Name: " + a.getName() + ", Course: " + a.getCourse() + " " + toDo);
+        }
+
+        return assignmentStrings;
+    }
+
+    public static List<String> getEventStringList(List<Event> events) {
+        List<String> eventStrings = new ArrayList<>();
+
+        for (Event e : events) {
+            eventStrings.add(e.getName());
+        }
+
+        return eventStrings;
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_by_day);
@@ -92,30 +117,5 @@ public class ViewByDay extends AppCompatActivity {
             }
         });
 
-    }
-
-    public static ArrayList<String> getAssignmentStringList(List<Assignment> assignments) {
-        ArrayList<String> assignmentStrings = new ArrayList<>();
-
-        for (Assignment a : assignments) {
-            String toDo = "To Do";
-            if (a.isIsCompleted()) {
-                toDo = "Done";
-            }
-
-            assignmentStrings.add("Name: " + a.getName() + ", Course: " + a.getCourse() + " " + toDo);
-        }
-
-        return assignmentStrings;
-    }
-
-    public static List<String> getEventStringList(List<Event> events) {
-        List<String> eventStrings = new ArrayList<>();
-
-        for (Event e : events) {
-            eventStrings.add(e.getName());
-        }
-
-        return eventStrings;
     }
 }

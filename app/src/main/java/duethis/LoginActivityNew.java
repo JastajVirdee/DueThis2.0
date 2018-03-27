@@ -15,9 +15,9 @@ import model.Student;
 import persistence.SQLiteInterface;
 
 public class LoginActivityNew extends AppCompatActivity {
+    Student student = null;
     private EditText unameField;
     private EditText pwordField;
-    Student student = null;
 
     // TODO: Remove data from application.
     // FIXME: Is this the main activity that is being launched? If so, then, loading happens here.
@@ -49,6 +49,7 @@ public class LoginActivityNew extends AppCompatActivity {
         } catch (InvalidInputException e) {
             System.out.println(e.getMessage());
         } catch (UnsatisfiedLinkError e) {
+            e.printStackTrace();
             System.out.println("Couldn't find libsqlitejdbc.so");
         }
 
