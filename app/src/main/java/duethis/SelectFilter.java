@@ -40,6 +40,20 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
                 Intent intent = new Intent(SelectFilter.this, ViewAssignmentList.class);
                 // pass to view assignments list the boolean flag all students
                 intent.putExtra("all_students", true);
+                intent.putExtra("incomplete", false);
+                startActivity(intent);
+            }
+        });
+
+        // Incomplete Assignments
+        Button incompleteAssignmentButton = findViewById(R.id.incompleteAssignmentButton);
+        incompleteAssignmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SelectFilter.this, ViewAssignmentList.class);
+                // pass to view assignments list the boolean flag all students and incomplete
+                intent.putExtra("all_students",true);
+                intent.putExtra("incomplete", true);
                 startActivity(intent);
             }
         });
@@ -58,6 +72,7 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
                 // pass to view assignments list the boolean flag all students
                 intent.putExtra("by_course", true);
                 intent.putExtra("course_name", courseName);
+                intent.putExtra("incomplete", false);
                 startActivity(intent);
             }
         });

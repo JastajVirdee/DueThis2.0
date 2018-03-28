@@ -9,15 +9,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.sql.Date;
 
 import controller.DueThisController;
 import controller.InvalidInputException;
 
+import controller.DueThisController;
+import controller.InvalidInputException;
 import model.Assignment;
 import model.Student;
+import model.Event;
+
+import static duethis.DueThisApplication.controller;
+import static duethis.DueThisApplication.student;
 
 public class ViewAssignmentList extends AppCompatActivity {
 
@@ -48,10 +56,11 @@ public class ViewAssignmentList extends AppCompatActivity {
             getSupportActionBar().setTitle("View Assignments");
 
         Intent parameters = getIntent();
-
         boolean all_students = parameters.getBooleanExtra("all_students", false);
         boolean by_course = parameters.getBooleanExtra("by_course", false);
         long date = parameters.getLongExtra("date", 0);
+        boolean incomplete = getIntent().getExtras().getBoolean("incomplete");
+
 
         Student student = DueThisApplication.student;
         List<Assignment> assignments = new ArrayList<>();
@@ -69,17 +78,21 @@ public class ViewAssignmentList extends AppCompatActivity {
         } else if( date != 0) {
             Date tempDate = new Date(date);
             assignments = controller.showFilteredByDateAssignment(student, tempDate);
+        } else if(incomplete) {
+            try {
+                  assignments = DueThisApplication.controller.showFilteredByIncompleted(student);
+              } catch (InvalidInputException e) {
+                  Tools.exceptionToast(getApplicationContext(),e.getMessage());
+              }
         }
-
-
-
 
         // displaying the assignments as a list, can potentially always be displayed the same way for
         // simplicity.
-
-        final ArrayList<Assignment> assignmentsReference = new ArrayList<>();
+        // Have to add all assignments here to show in other method.
+        final ArrayList<Assignment> assignmentsReference = new ArrayList();
         assignmentsReference.addAll(assignments);
-        final ArrayList<String> assignmentsDisplay = getAssignmentStringList(assignments);
+
+        final ArrayList<String> assignmentsDisplay = getAssignmentStringList(assignmentsReference);
 
         ListAdapter assignmentAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, assignmentsDisplay);
         ListView assignmentView = findViewById(R.id.assignmentFilterListView);

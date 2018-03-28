@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/DueThis2.0.iml" filepath="$PROJECT_DIR$/DueThis2.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/DueThisController/DueThisController.iml" filepath="$PROJECT_DIR$/DueThisController/DueThisController.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Jastaj\Documents\School\ECSE 428\DueThis2.0\DueThis2.0\app\app.iml" filepath="C:\Users\Jastaj\Documents\School\ECSE 428\DueThis2.0\DueThis2.0\app\app.iml" />
     </modules>
   </component>
 </project>
