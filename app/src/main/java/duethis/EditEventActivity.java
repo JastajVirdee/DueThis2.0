@@ -13,15 +13,12 @@ import java.sql.Time;
 import java.util.Calendar;
 import java.util.List;
 
-import controller.DueThisController;
 import controller.InvalidInputException;
 import model.Event;
-import model.Student;
 
 public class EditEventActivity extends EditActivity {
     final private String fromTimeField = "fromTimeField";
     final private String toTimeField = "toTimeField";
-    DueThisController controller = new DueThisController();
     private Calendar calendarEventStartDate = Calendar.getInstance();
     private Calendar calendarEventStopDate = Calendar.getInstance();
     private String lastClicked = fromTimeField;
@@ -37,11 +34,7 @@ public class EditEventActivity extends EditActivity {
         // getting the event id from a bundle.
         Intent parameters = getIntent();
         String eventId = parameters.getStringExtra("EventID");
-
-
-        final Student student = duethis.DueThisApplication.student;
-
-        List<Event> events = student.getEvents();
+        List<Event> events = duethis.DueThisApplication.student.getEvents();
 
         // getting the event to modify from the student.
         Event eventToModify = null;
@@ -56,33 +49,32 @@ public class EditEventActivity extends EditActivity {
         if (eventToModify == null) {
             startActivity(new Intent(EditEventActivity.this, MainActivity.class));
             Tools.exceptionToast(getApplicationContext(), "Event not found.");
+            return;
         }
-
 
         EditText nameText = findViewById(R.id.eventNameTextfield);
         nameText.setText(eventToModify.getName(), TextView.BufferType.EDITABLE);
-
 
         final CheckBox checkBox = findViewById(R.id.eventRepeatCheckBox);
         checkBox.setChecked(eventToModify.getRepeatedWeekly());
 
         java.sql.Time eventStartDate = eventToModify.getStartTime();
         java.sql.Time eventEndDate = eventToModify.getEndTime();
+
         calendarEventStartDate.setTime(eventStartDate);
         calendarEventStopDate.setTime(eventEndDate);
 
-
         final Event eventOnSubmit = eventToModify;
-
 
         // Delete event
         Button deleteButton = findViewById(R.id.eventDeleteButton);
+        //noinspection Convert2Lambda
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean successful = false;
                 try {
-                    successful = controller.removeEvent(student, eventOnSubmit);
+                    successful = DueThisApplication.controller.removeEvent(duethis.DueThisApplication.student, eventOnSubmit);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), "Can't remove event");
                 }
@@ -96,6 +88,7 @@ public class EditEventActivity extends EditActivity {
 
         // Click Submit
         Button submitButton = findViewById(R.id.eventSubmitButton);
+        //noinspection Convert2Lambda
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,10 +99,10 @@ public class EditEventActivity extends EditActivity {
                 Time endTime = new Time(calendarEventStopDate.getTimeInMillis());
                 final CheckBox checkBox = findViewById(R.id.eventRepeatCheckBox);
                 boolean repeatWeekly = checkBox.isChecked();
-
                 boolean successful = false;
+
                 try {
-                    successful = controller.editEvent(eventOnSubmit, name, date, startTime, endTime, repeatWeekly);
+                    successful = DueThisApplication.controller.editEvent(eventOnSubmit, name, date, startTime, endTime, repeatWeekly);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }
@@ -124,6 +117,7 @@ public class EditEventActivity extends EditActivity {
 
         //Click on From Date Picker
         Button fromTimeButton = findViewById(R.id.eventFromTimeButton);
+        //noinspection Convert2Lambda
         fromTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +130,7 @@ public class EditEventActivity extends EditActivity {
 
         //Click on To Date Picker
         Button toTimeButton = findViewById(R.id.eventToTimeButton);
+        //noinspection Convert2Lambda
         toTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -193,6 +188,7 @@ public class EditEventActivity extends EditActivity {
         } else {
             eventTime = new java.sql.Time(calendarEventStopDate.getTimeInMillis());
         }
+
         int hours = eventTime.getHours();
         int minutes = eventTime.getMinutes();
         args.putInt("hour", hours);

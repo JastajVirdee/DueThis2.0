@@ -11,13 +11,8 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
-import controller.DueThisController;
-
 public class SelectFilter extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-
-    DueThisController controller = new DueThisController();
     private Calendar c = Calendar.getInstance();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +24,7 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
 
         // All Assignments
         Button allAssignmentButton = findViewById(R.id.allAssignmentButton);
+        //noinspection Convert2Lambda
         allAssignmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,12 +39,13 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
 
         // Incomplete Assignments
         Button incompleteAssignmentButton = findViewById(R.id.incompleteAssignmentButton);
+        //noinspection Convert2Lambda
         incompleteAssignmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SelectFilter.this, ViewAssignmentList.class);
                 // pass to view assignments list the boolean flag all students and incomplete
-                intent.putExtra("all_students", true);
+                intent.putExtra("all_students", false);
                 intent.putExtra("incomplete", true);
                 intent.putExtra("completed", false);
                 startActivity(intent);
@@ -57,6 +54,7 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
 
         // Complete Assignments
         Button completedAssignmentButton = findViewById(R.id.completedAssignmentButton);
+        //noinspection Convert2Lambda
         completedAssignmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,15 +71,14 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
 
         // Assignments by course
         Button courseAssignmentButton = findViewById(R.id.courseAssignmentButton);
+        //noinspection Convert2Lambda
         courseAssignmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 final EditText courseNameText = findViewById(R.id.courseNameTextField);
                 String courseName = courseNameText.getText().toString();
-
-
                 Intent intent = new Intent(SelectFilter.this, ViewAssignmentList.class);
+
                 // pass to view assignments list the boolean flag all students
                 intent.putExtra("by_course", true);
                 intent.putExtra("course_name", courseName);
@@ -92,12 +89,10 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
         });
     }
 
-
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePicker();
         newFragment.show(getFragmentManager(), "datePicker");
     }
-
 
     @Override
     public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
@@ -110,6 +105,4 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
         intent.putExtra("date", result);
         startActivity(intent);
     }
-
-
 }

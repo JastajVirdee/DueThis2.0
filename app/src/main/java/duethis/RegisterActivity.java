@@ -20,6 +20,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Click Login Button
         Button loginButton = findViewById(R.id.registerLoginButton);
+        //noinspection Convert2Lambda
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         Button registerButton = findViewById(R.id.registerButton);
+        //noinspection Convert2Lambda
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

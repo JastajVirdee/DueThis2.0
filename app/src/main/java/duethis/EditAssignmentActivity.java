@@ -14,14 +14,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import controller.DueThisController;
 import controller.InvalidInputException;
 import model.Assignment;
 import model.Student;
 
 public class EditAssignmentActivity extends EditActivity {
-
-    DueThisController controller = new DueThisController();
     private Calendar calendarAssignmentDueDate = Calendar.getInstance();
 
     @Override
@@ -34,10 +31,7 @@ public class EditAssignmentActivity extends EditActivity {
 
         Intent parameters = getIntent();
         String assignmentId = parameters.getStringExtra("AssignmentID");
-        final Student student = duethis.DueThisApplication.student;
-
-
-        List<Assignment> assignments = student.getAssignments();
+        List<Assignment> assignments = duethis.DueThisApplication.student.getAssignments();
 
         // getting the assignment to modify from the student.
         Assignment assignmentToModify = null;
@@ -52,6 +46,7 @@ public class EditAssignmentActivity extends EditActivity {
         if (assignmentToModify == null) {
             startActivity(new Intent(EditAssignmentActivity.this, MainActivity.class));
             Tools.exceptionToast(getApplicationContext(), "Assignment not found.");
+            return;
         }
 
         // setting text in fields based on the assignment object
@@ -67,12 +62,11 @@ public class EditAssignmentActivity extends EditActivity {
         String weightString = Float.toString(weight);
         weightField.setText(weightString, TextView.BufferType.EDITABLE);
 
-
         final EditText estimatedTimeOfCompletionField = findViewById(R.id.assignmentEstimatedTimeTextfield);
         Duration estimatedTimeOfCompletion = assignmentToModify.getCompletionTime();
         if (estimatedTimeOfCompletion != null) {
             long hours = estimatedTimeOfCompletion.toHours();
-            estimatedTimeOfCompletionField.setText(Long.toString(hours), TextView.BufferType.EDITABLE);
+            estimatedTimeOfCompletionField.setText(Tools.getFormattedString(hours), TextView.BufferType.EDITABLE);
         } else {
             estimatedTimeOfCompletionField.setText("", TextView.BufferType.EDITABLE);
         }
@@ -88,6 +82,7 @@ public class EditAssignmentActivity extends EditActivity {
         Button submitButton = findViewById(R.id.assignmentSubmitButton);
         final Assignment assignmentOnSubmit = assignmentToModify;
 
+        //noinspection Convert2Lambda
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,6 +109,7 @@ public class EditAssignmentActivity extends EditActivity {
                 } catch (java.lang.NumberFormatException e) {
                     duration = null;
                 }
+
                 final CheckBox completedField = findViewById(R.id.assignmentDoneCheckBox);
                 boolean isCompleted = completedField.isChecked();
 
@@ -125,9 +121,9 @@ public class EditAssignmentActivity extends EditActivity {
                 boolean successful = false;
                 // Submit assignment call to backend
                 try {
-                    successful = controller.editAssignment(assignmentOnSubmit, name, course, date, weight, duration, student);
+                    successful = DueThisApplication.controller.editAssignment(assignmentOnSubmit, name, course, date, weight, duration, student);
                     if (isCompleted) {
-                        controller.completeAssignment(student, assignmentOnSubmit);
+                        DueThisApplication.controller.completeAssignment(student, assignmentOnSubmit);
                     }
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
@@ -139,14 +135,14 @@ public class EditAssignmentActivity extends EditActivity {
             }
         });
 
-
         Button deleteButton = findViewById(R.id.assignmentDeleteButton);
+        //noinspection Convert2Lambda
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean successful = false;
                 try {
-                    successful = controller.removeAssignment(student, assignmentOnSubmit);
+                    successful = DueThisApplication.controller.removeAssignment(duethis.DueThisApplication.student, assignmentOnSubmit);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), "Can't remove assignment");
                 }
@@ -158,7 +154,6 @@ public class EditAssignmentActivity extends EditActivity {
             }
         });
     }
-
 
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
@@ -187,7 +182,6 @@ public class EditAssignmentActivity extends EditActivity {
         newFragment.show(getFragmentManager(), "timePicker");
     }
 
-
     @Override
     public void onDateSet(android.widget.DatePicker datePicker, int year, int month, int day) {
         calendarAssignmentDueDate.set(Calendar.YEAR, year);
@@ -200,6 +194,4 @@ public class EditAssignmentActivity extends EditActivity {
         calendarAssignmentDueDate.set(Calendar.HOUR_OF_DAY, hour);
         calendarAssignmentDueDate.set(Calendar.MINUTE, hour);
     }
-
 }
-

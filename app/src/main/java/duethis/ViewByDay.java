@@ -11,44 +11,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import model.Assignment;
 import model.Event;
 
-import static duethis.DueThisApplication.student;
-
-
 // Created by Rahul on 2/13/2018.
 
 public class ViewByDay extends AppCompatActivity {
-
-    public static ArrayList<String> getAssignmentStringList(List<Assignment> assignments) {
-        ArrayList<String> assignmentStrings = new ArrayList<>();
-
-        for (Assignment a : assignments) {
-            String toDo = "To Do";
-            if (a.isIsCompleted()) {
-                toDo = "Done";
-            }
-
-            assignmentStrings.add("Name: " + a.getName() + ", Course: " + a.getCourse() + " " + toDo);
-        }
-
-        return assignmentStrings;
-    }
-
-    public static List<String> getEventStringList(List<Event> events) {
-        List<String> eventStrings = new ArrayList<>();
-
-        for (Event e : events) {
-            eventStrings.add(e.getName());
-        }
-
-        return eventStrings;
-    }
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_by_day);
@@ -65,12 +35,13 @@ public class ViewByDay extends AppCompatActivity {
         Date date = Date.valueOf(dateString);
 
 
-        final List<Assignment> assignmentList = DueThisApplication.controller.showAssignment(student, date);
-        List<String> displayAssignmentList = getAssignmentStringList(assignmentList);
+        final List<Assignment> assignmentList = DueThisApplication.controller.showAssignment(DueThisApplication.student, date);
+        List<String> displayAssignmentList = Tools.getAssignmentStringList(assignmentList);
         ListAdapter assignmentAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, displayAssignmentList);
         ListView assignmentView = findViewById(R.id.assignmentListView);
-        assignmentView.setAdapter(assignmentAdapter);
 
+        assignmentView.setAdapter(assignmentAdapter);
+        //noinspection Convert2Lambda
         assignmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -82,19 +53,20 @@ public class ViewByDay extends AppCompatActivity {
             }
         });
 
-        final List<Event> eventList = DueThisApplication.controller.showEvent(student, date);
-        List<String> displayEventList = getEventStringList(eventList);
+        final List<Event> eventList = DueThisApplication.controller.showEvent(DueThisApplication.student, date);
+        List<String> displayEventList = Tools.getEventStringList(eventList);
         ListAdapter eventAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, displayEventList);
         ListView eventView = findViewById(R.id.eventListView);
-        eventView.setAdapter(eventAdapter);
 
+        eventView.setAdapter(eventAdapter);
+        //noinspection Convert2Lambda
         eventView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
                 Event event = eventList.get(position);
                 Intent intent = new Intent(ViewByDay.this, EditEventActivity.class);
                 String eventId = event.getId();
+
                 intent.putExtra("EventID", eventId);
                 startActivity(intent);
             }
@@ -102,6 +74,7 @@ public class ViewByDay extends AppCompatActivity {
 
 
         Button addAssignmentButton = findViewById(R.id.addAssignmentButton);
+        //noinspection Convert2Lambda
         addAssignmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,6 +83,7 @@ public class ViewByDay extends AppCompatActivity {
         });
 
         Button addEventButton = findViewById(R.id.addEventButton);
+        //noinspection Convert2Lambda
         addEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

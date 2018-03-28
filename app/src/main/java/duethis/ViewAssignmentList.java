@@ -15,24 +15,8 @@ import java.util.List;
 
 import controller.InvalidInputException;
 import model.Assignment;
-import model.Student;
 
 public class ViewAssignmentList extends AppCompatActivity {
-    public static ArrayList<String> getAssignmentStringList(List<Assignment> assignments) {
-        ArrayList<String> assignmentStrings = new ArrayList<>();
-
-        for (Assignment a : assignments) {
-            String toDo = "To Do";
-            if (a.isIsCompleted()) {
-                toDo = "Done";
-            }
-
-            assignmentStrings.add("Name: " + a.getName() + ", Course: " + a.getCourse() + " " + toDo);
-        }
-
-        return assignmentStrings;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,38 +32,25 @@ public class ViewAssignmentList extends AppCompatActivity {
         boolean completed = parameters.getBooleanExtra("completed", false);
         long date = parameters.getLongExtra("date", 0);
 
-        //incomplete = getIntent().getExtras().getBoolean("incomplete");
-        //completed = getIntent().getExtras().getBoolean("completed");
-
-
-        Student student = DueThisApplication.student;
-        List<Assignment> assignments = new ArrayList<>();
+        List<Assignment> assignments = null;
 
         // implement the backend filtering methods here. you should be able to do
-        if (all_students) {
-            assignments = student.getAssignments();
-        } else if (by_course) {
-            String courseName = parameters.getStringExtra("course_name");
-            try {
-                assignments = DueThisApplication.controller.showAssignmentsByCourse(student, courseName);
-            } catch (InvalidInputException e) {
-                System.out.println(e.getMessage());
+        try {
+            if (all_students) {
+                assignments = DueThisApplication.student.getAssignments();
+            } else if (by_course) {
+                String courseName = parameters.getStringExtra("course_name");
+                assignments = DueThisApplication.controller.showAssignmentsByCourse(DueThisApplication.student, courseName);
+            } else if (date != 0) {
+                assignments = DueThisApplication.controller.showFilteredByDateAssignment(DueThisApplication.student, new Date(date));
+            } else if (incomplete) {
+                assignments = DueThisApplication.controller.showFilteredByIncompleted(DueThisApplication.student);
+            } else if (completed) {
+                assignments = DueThisApplication.controller.showFilteredByCompleted(DueThisApplication.student);
             }
-        } else if (date != 0) {
-            Date tempDate = new Date(date);
-            assignments = DueThisApplication.controller.showFilteredByDateAssignment(student, tempDate);
-        } else if (incomplete) {
-            try {
-                assignments = DueThisApplication.controller.showFilteredByIncompleted(student);
-            } catch (InvalidInputException e) {
-                Tools.exceptionToast(getApplicationContext(), e.getMessage());
-            }
-        } else if(completed){
-            try{
-                assignments = DueThisApplication.controller.showFilteredByCompleted(student);
-            } catch (InvalidInputException e){
-                Tools.exceptionToast(getApplicationContext(), e.getMessage());
-            }
+        } catch (InvalidInputException e) {
+            Tools.exceptionToast(getApplicationContext(), e.getMessage());
+            return;
         }
 
         // displaying the assignments as a list, can potentially always be displayed the same way for
@@ -88,12 +59,13 @@ public class ViewAssignmentList extends AppCompatActivity {
         final ArrayList<Assignment> assignmentsReference = new ArrayList<>();
         assignmentsReference.addAll(assignments);
 
-        final ArrayList<String> assignmentsDisplay = getAssignmentStringList(assignmentsReference);
+        final ArrayList<String> assignmentsDisplay = Tools.getAssignmentStringList(assignmentsReference);
 
         ListAdapter assignmentAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, assignmentsDisplay);
         ListView assignmentView = findViewById(R.id.assignmentFilterListView);
         assignmentView.setAdapter(assignmentAdapter);
 
+        //noinspection Convert2Lambda
         assignmentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

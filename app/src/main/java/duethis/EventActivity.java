@@ -15,21 +15,15 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.Calendar;
 
-import controller.DueThisController;
 import controller.InvalidInputException;
-import model.Student;
-
 
 public class EventActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
-
-
     final private String fromTimeField = "fromTimeField";
     final private String toTimeField = "toTimeField";
     DialogFragment fromTimeFragment = new TimePicker();
     DialogFragment toTimeFragment = new TimePicker();
     Calendar start = Calendar.getInstance();
     Calendar end = Calendar.getInstance();
-    DueThisController controller = new DueThisController();
     private String lastClicked = fromTimeField;
 
     @Override
@@ -45,6 +39,7 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
 
         // Click Submit
         Button submitButton = findViewById(R.id.eventSubmitButton);
+        //noinspection Convert2Lambda
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,13 +51,13 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
                 final CheckBox checkBox = findViewById(R.id.eventRepeatCheckBox);
                 boolean repeatWeekly = checkBox.isChecked();
 
-                Student student = duethis.DueThisApplication.student;
                 boolean successful = false;
                 try {
-                    successful = controller.createEvent(student, name, date, startTime, endTime, repeatWeekly);
+                    successful = DueThisApplication.controller.createEvent(duethis.DueThisApplication.student, name, date, startTime, endTime, repeatWeekly);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
                 }
+
                 if (successful) {
                     startActivity(new Intent(EventActivity.this, MainActivity.class));
                 }
@@ -71,6 +66,7 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
 
         //Click on From Date Picker
         Button fromTimeButton = findViewById(R.id.eventFromTimeButton);
+        //noinspection Convert2Lambda
         fromTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,6 +79,7 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
 
         //Click on To Date Picker
         Button toTimeButton = findViewById(R.id.eventToTimeButton);
+        //noinspection Convert2Lambda
         toTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

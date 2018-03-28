@@ -10,12 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import controller.DueThisController;
-import model.Student;
-
 public class HoursAvailableActivity extends AppCompatActivity {
-
-    DueThisController controller = new DueThisController();
     private EditText mondayField;
     private EditText tuesdayField;
     private EditText wedField;
@@ -40,40 +35,38 @@ public class HoursAvailableActivity extends AppCompatActivity {
         if (getSupportActionBar() != null)
             getSupportActionBar().setTitle("Set Availability");
 
-        final Student student = duethis.DueThisApplication.student;
-
         // Setting text in text fields to what they currently are
         mondayField = findViewById(R.id.hoursAvailableMonTextfield);
-        mondayHours = student.getMondayAvailability();
-        mondayField.setText(Integer.toString(mondayHours), TextView.BufferType.EDITABLE);
+        mondayHours = duethis.DueThisApplication.student.getMondayAvailability();
+        mondayField.setText(Tools.getFormattedString(mondayHours), TextView.BufferType.EDITABLE);
 
         tuesdayField = findViewById(R.id.hoursAvailableTueTextfield);
-        tuesdayHours = student.getTuesdayAvailability();
-        tuesdayField.setText(Integer.toString(tuesdayHours), TextView.BufferType.EDITABLE);
+        tuesdayHours = duethis.DueThisApplication.student.getTuesdayAvailability();
+        tuesdayField.setText(Tools.getFormattedString(tuesdayHours), TextView.BufferType.EDITABLE);
 
         wedField = findViewById(R.id.hoursAvailableWedTextfield);
-        wedHours = student.getWednesdayAvailability();
-        wedField.setText(Integer.toString(wedHours), TextView.BufferType.EDITABLE);
+        wedHours = duethis.DueThisApplication.student.getWednesdayAvailability();
+        wedField.setText(Tools.getFormattedString(wedHours), TextView.BufferType.EDITABLE);
 
         thurField = findViewById(R.id.hoursAvailableThurTextfield);
-        thurHours = student.getThursdayAvailability();
-        thurField.setText(Integer.toString(thurHours), TextView.BufferType.EDITABLE);
+        thurHours = duethis.DueThisApplication.student.getThursdayAvailability();
+        thurField.setText(Tools.getFormattedString(thurHours), TextView.BufferType.EDITABLE);
 
         friField = findViewById(R.id.hoursAvailableFriTextfield);
-        friHours = student.getFridayAvailability();
-        friField.setText(Integer.toString(friHours), TextView.BufferType.EDITABLE);
+        friHours = duethis.DueThisApplication.student.getFridayAvailability();
+        friField.setText(Tools.getFormattedString(friHours), TextView.BufferType.EDITABLE);
 
         satField = findViewById(R.id.hoursAvailableSatTextfield);
-        satHours = student.getSaturdayAvailability();
-        satField.setText(Integer.toString(satHours), TextView.BufferType.EDITABLE);
+        satHours = duethis.DueThisApplication.student.getSaturdayAvailability();
+        satField.setText(Tools.getFormattedString(satHours), TextView.BufferType.EDITABLE);
 
         sunField = findViewById(R.id.hoursAvailableSunTextfield);
-        sunHours = student.getSundayAvailability();
-        sunField.setText(Integer.toString(sunHours), TextView.BufferType.EDITABLE);
-
+        sunHours = duethis.DueThisApplication.student.getSundayAvailability();
+        sunField.setText(Tools.getFormattedString(sunHours), TextView.BufferType.EDITABLE);
 
         // Click Back
         Button backButton = findViewById(R.id.hoursAvailableBackButton);
+        //noinspection Convert2Lambda
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,10 +76,10 @@ public class HoursAvailableActivity extends AppCompatActivity {
 
         // Click Submit
         Button submitButton = findViewById(R.id.hoursAvailableSubmitButton);
+        //noinspection Convert2Lambda
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String mondayText = mondayField.getText().toString();
                 if (mondayText.matches("")) {
                     mondayHours = 0;
@@ -136,11 +129,8 @@ public class HoursAvailableActivity extends AppCompatActivity {
                     sunHours = Integer.parseInt(sunText);
                 }
 
-                // getting student from global variable student.
-                //Student student = application.student; ALREADY DONE EARLIER
-
                 try {
-                    controller.updateAvailabilities(student, sunHours, mondayHours, tuesdayHours, wedHours, thurHours, friHours, satHours);
+                    DueThisApplication.controller.updateAvailabilities(duethis.DueThisApplication.student, sunHours, mondayHours, tuesdayHours, wedHours, thurHours, friHours, satHours);
                     startActivity(new Intent(HoursAvailableActivity.this, MainActivity.class));
                 } catch (controller.InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());

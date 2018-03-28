@@ -6,12 +6,9 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import controller.AccountController;
 import controller.InvalidInputException;
-import model.Student;
 
 public class ExperiencedNoviceActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +18,12 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Set Experienced or Novice");
 
         // Setting the experience by default here.
-        Student student = duethis.DueThisApplication.student;
         TextView textView = findViewById(R.id.experienceStatus);
 
-        if (student.getExperienced()) {
-            textView.setText("Experienced Student");
+        if (duethis.DueThisApplication.student.getExperienced()) {
+            textView.setText(Tools.getFormattedString("Experienced Student"));
         } else {
-            textView.setText("Novice Student");
+            textView.setText(Tools.getFormattedString("Novice Student"));
         }
     }
 
@@ -36,26 +32,21 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
         boolean checked = ((RadioButton) view).isChecked();
 
         // Setting the experience by default here.
-        Student student = duethis.DueThisApplication.student;
-
         TextView textView = findViewById(R.id.experienceStatus);
-
-        // - FIXME Proper controller updated required for persistence to work
-        AccountController accountController = new AccountController();
 
         // Check which radio button was clicked
         switch (view.getId()) {
             case R.id.radio_experienced:
                 if (checked) {
-                    if (student.getExperienced())
-                        textView.setText("You are already an experienced student.");
+                    if (duethis.DueThisApplication.student.getExperienced())
+                        textView.setText(Tools.getFormattedString("You are already an experienced student."));
                     else {
                         try {
-                            accountController.changeRole(student, true, 0, 0, 0, 0, 0, 0, 0);
-                            textView.setText("You are now an experienced student.");
+                            DueThisApplication.controllerAccount.changeRole(duethis.DueThisApplication.student, true, 0, 0, 0, 0, 0, 0, 0);
+                            textView.setText(Tools.getFormattedString("You are now an experienced student."));
                         } catch (InvalidInputException e) {
                             System.out.println(e.getMessage());
-                            textView.setText("Could not change student role");
+                            textView.setText(Tools.getFormattedString("Could not change student role"));
                         }
                     }
                 }
@@ -63,19 +54,18 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
                 break;
             case R.id.radio_novice:
                 if (checked) {
-                    if (!student.getExperienced())
-                        textView.setText("You are already a novice student.");
+                    if (!duethis.DueThisApplication.student.getExperienced())
+                        textView.setText(Tools.getFormattedString("You are already a novice student."));
                     else {
                         try {
-                            accountController.changeRole(student, false, 0, 0, 0, 0, 0, 0, 0);
-                            textView.setText("You are now a novice student.");
+                            DueThisApplication.controllerAccount.changeRole(duethis.DueThisApplication.student, false, 0, 0, 0, 0, 0, 0, 0);
+                            textView.setText(Tools.getFormattedString("You are now a novice student."));
                         } catch (InvalidInputException e) {
                             System.out.println(e.getMessage());
-                            textView.setText("Could not change student role");
+                            textView.setText(Tools.getFormattedString("Could not change student role"));
                         }
                     }
                 }
-
                 break;
         }
     }

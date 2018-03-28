@@ -16,8 +16,6 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
         int month = b.getInt("month");
         int day = b.getInt("day");
 
-        // FIXME: Is getActivity needed for something?
-        getActivity();
         DatePickerDialog datePicker = new DatePickerDialog(getActivity(), this, year, month, day);
         datePicker.setOnDateSetListener((EditActivity) getActivity());
         return datePicker;

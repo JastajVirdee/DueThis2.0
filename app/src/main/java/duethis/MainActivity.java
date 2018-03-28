@@ -14,7 +14,6 @@ import android.widget.Toast;
 import controller.InvalidInputException;
 
 public class MainActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         // Click Add Assignment
         Button addAssignmentButton = findViewById(R.id.mainAddAssignmentButton);
+        //noinspection Convert2Lambda
         addAssignmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         // Click Add Assignment
         Button addEventButton = findViewById(R.id.mainAddEventButton);
+        //noinspection Convert2Lambda
         addEventButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         // Click Hours Available
         Button hoursAvailableButton = findViewById(R.id.mainHoursAvailableButton);
+        //noinspection Convert2Lambda
         hoursAvailableButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,9 +52,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-
         // ExperiencedNovice Selection
         Button setExperienceButton = findViewById(R.id.mainSetExperience);
+        //noinspection Convert2Lambda
         setExperienceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,33 +64,35 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
 
         // Delete account
         Button deleteAccountButton = findViewById(R.id.mainDeleteAccountButton);
+        //noinspection Convert2Lambda
         deleteAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //noinspection Convert2Lambda
                 new AlertDialog.Builder(MainActivity.this)
                         .setTitle("Delete Account")
                         .setMessage("Do you really want to permanently delete this account?")
                         .setIcon(android.R.drawable.ic_dialog_alert)
-                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int whichButton) {
-                                try {
-                                    duethis.DueThisApplication.controllerAccount.deleteAccount(duethis.DueThisApplication.student.getUsername(), duethis.DueThisApplication.student.getPassword());
-                                } catch (InvalidInputException e) {
-                                    e.printStackTrace();
-                                }
-                                duethis.DueThisApplication.student = null;
-                                startActivity(new Intent(MainActivity.this, LoginActivityNew.class));
-                                Toast.makeText(getApplicationContext(), "User account deleted", Toast.LENGTH_SHORT).show();
-                            }
-                        })
+                        .setPositiveButton(android.R.string.yes,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int whichButton) {
+                                        try {
+                                            duethis.DueThisApplication.controllerAccount.deleteAccount(duethis.DueThisApplication.student.getUsername(), duethis.DueThisApplication.student.getPassword());
+                                        } catch (InvalidInputException e) {
+                                            e.printStackTrace();
+                                        }
+                                        duethis.DueThisApplication.student = null;
+                                        startActivity(new Intent(MainActivity.this, LoginActivityNew.class));
+                                        Toast.makeText(getApplicationContext(), "User account deleted", Toast.LENGTH_SHORT).show();
+                                    }
+                                })
                         .setNegativeButton(android.R.string.no, null).show();
             }
         });
 
         // Logout Button
         Button logoutButton = findViewById(R.id.mainLogout);
+        //noinspection Convert2Lambda
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,9 +101,9 @@ public class MainActivity extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-
         //View Assignments/Exams
         Button viewAssignmentExamButton = findViewById(R.id.mainViewAssignmentExam);
+        //noinspection Convert2Lambda
         viewAssignmentExamButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
