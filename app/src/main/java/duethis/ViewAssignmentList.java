@@ -11,24 +11,13 @@ import android.widget.ListView;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.sql.Date;
 
-import controller.DueThisController;
-import controller.InvalidInputException;
-
-import controller.DueThisController;
 import controller.InvalidInputException;
 import model.Assignment;
 import model.Student;
-import model.Event;
-
-import static duethis.DueThisApplication.controller;
-import static duethis.DueThisApplication.student;
 
 public class ViewAssignmentList extends AppCompatActivity {
-
     public static ArrayList<String> getAssignmentStringList(List<Assignment> assignments) {
         ArrayList<String> assignmentStrings = new ArrayList<>();
 
@@ -43,9 +32,6 @@ public class ViewAssignmentList extends AppCompatActivity {
 
         return assignmentStrings;
     }
-
-
-    DueThisController controller = new DueThisController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,21 +61,21 @@ public class ViewAssignmentList extends AppCompatActivity {
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
-        } else if( date != 0) {
+        } else if (date != 0) {
             Date tempDate = new Date(date);
-            assignments = controller.showFilteredByDateAssignment(student, tempDate);
-        } else if(incomplete) {
+            assignments = DueThisApplication.controller.showFilteredByDateAssignment(student, tempDate);
+        } else if (incomplete) {
             try {
-                  assignments = DueThisApplication.controller.showFilteredByIncompleted(student);
-              } catch (InvalidInputException e) {
-                  Tools.exceptionToast(getApplicationContext(),e.getMessage());
-              }
+                assignments = DueThisApplication.controller.showFilteredByIncompleted(student);
+            } catch (InvalidInputException e) {
+                Tools.exceptionToast(getApplicationContext(), e.getMessage());
+            }
         }
 
         // displaying the assignments as a list, can potentially always be displayed the same way for
         // simplicity.
         // Have to add all assignments here to show in other method.
-        final ArrayList<Assignment> assignmentsReference = new ArrayList();
+        final ArrayList<Assignment> assignmentsReference = new ArrayList<>();
         assignmentsReference.addAll(assignments);
 
         final ArrayList<String> assignmentsDisplay = getAssignmentStringList(assignmentsReference);

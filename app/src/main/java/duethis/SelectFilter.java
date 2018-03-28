@@ -9,14 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.Calendar;
 
 import controller.DueThisController;
-import model.Student;
-import model.Assignment;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.List;
 
 public class SelectFilter extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -52,7 +47,7 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
             public void onClick(View v) {
                 Intent intent = new Intent(SelectFilter.this, ViewAssignmentList.class);
                 // pass to view assignments list the boolean flag all students and incomplete
-                intent.putExtra("all_students",true);
+                intent.putExtra("all_students", true);
                 intent.putExtra("incomplete", true);
                 startActivity(intent);
             }
@@ -92,7 +87,7 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
         c.set(Calendar.DATE, day);
         long result = c.getTimeInMillis();
         Intent intent = new Intent(SelectFilter.this, ViewAssignmentList.class);
-        intent.putExtra("all_students",false);
+        intent.putExtra("all_students", false);
         intent.putExtra("date", result);
         startActivity(intent);
     }
