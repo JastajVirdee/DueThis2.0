@@ -11,8 +11,11 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
+import controller.DueThisController;
 import controller.InvalidInputException;
+
 import model.Assignment;
 import model.Student;
 
@@ -33,6 +36,9 @@ public class ViewAssignmentList extends AppCompatActivity {
         return assignmentStrings;
     }
 
+
+    DueThisController controller = new DueThisController();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +48,10 @@ public class ViewAssignmentList extends AppCompatActivity {
             getSupportActionBar().setTitle("View Assignments");
 
         Intent parameters = getIntent();
+
         boolean all_students = parameters.getBooleanExtra("all_students", false);
         boolean by_course = parameters.getBooleanExtra("by_course", false);
+        long date = parameters.getLongExtra("date", 0);
 
         Student student = DueThisApplication.student;
         List<Assignment> assignments = new ArrayList<>();
@@ -58,7 +66,12 @@ public class ViewAssignmentList extends AppCompatActivity {
             } catch (InvalidInputException e) {
                 System.out.println(e.getMessage());
             }
+        } else if( date != 0) {
+            Date tempDate = new Date(date);
+            assignments = controller.showFilteredByDateAssignment(student, tempDate);
         }
+
+
 
 
         // displaying the assignments as a list, can potentially always be displayed the same way for

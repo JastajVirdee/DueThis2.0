@@ -17,6 +17,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/courseNameTextField"
         android:layout_width="wrap_content"
@@ -36,4 +37,18 @@
         android:text="Filter"
         app:layout_constraintStart_toEndOf="@+id/courseNameTextField"
         app:layout_constraintTop_toBottomOf="@+id/allAssignmentButton" />
+
+    <Button
+        android:id="@+id/dateAssignmentButton"
+        android:layout_width="313dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="44dp"
+        android:onClick="showDatePickerDialog"
+        android:text="Assignments by Day"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseAssignmentButton" />
+
 </android.support.constraint.ConstraintLayout>
