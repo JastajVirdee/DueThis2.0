@@ -95,13 +95,11 @@ public class LoginActivityNew extends AppCompatActivity {
                     duethis.DueThisApplication.student = duethis.DueThisApplication.controllerAccount.logIn(unameText, pwordText);
                 } catch (controller.InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
+                    return;
                 }
 
-                // Successful
-                if (duethis.DueThisApplication.student != null) {
-                    Tools.exceptionToast(getApplicationContext(), "Login successful!\n  Welcome " + unameText);
-                    startActivity(new Intent(LoginActivityNew.this, MainActivity.class));
-                }
+                Tools.exceptionToast(getApplicationContext(), "Login successful!\n  Welcome " + unameText);
+                startActivity(new Intent(LoginActivityNew.this, MainActivity.class));
             }
         });
     }

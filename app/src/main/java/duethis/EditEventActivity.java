@@ -74,7 +74,7 @@ public class EditEventActivity extends EditActivity {
             public void onClick(View v) {
                 boolean successful = false;
                 try {
-                    successful = DueThisApplication.controller.removeEvent(duethis.DueThisApplication.student, eventOnSubmit);
+                    successful = DueThisApplication.controller.removeEvent(DueThisApplication.student, eventOnSubmit);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), "Can't remove event");
                 }

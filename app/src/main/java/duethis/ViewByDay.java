@@ -34,7 +34,6 @@ public class ViewByDay extends AppCompatActivity {
         String dateString = year + "-" + (month + 1) + "-" + day;
         Date date = Date.valueOf(dateString);
 
-
         final List<Assignment> assignmentList = DueThisApplication.controller.showAssignment(DueThisApplication.student, date);
         List<String> displayAssignmentList = Tools.getAssignmentStringList(assignmentList);
         ListAdapter assignmentAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, displayAssignmentList);

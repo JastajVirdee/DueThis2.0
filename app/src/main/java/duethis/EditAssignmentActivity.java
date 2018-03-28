@@ -127,6 +127,7 @@ public class EditAssignmentActivity extends EditActivity {
                     }
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
+                    return;
                 }
 
                 if (successful) {
@@ -142,7 +143,7 @@ public class EditAssignmentActivity extends EditActivity {
             public void onClick(View v) {
                 boolean successful = false;
                 try {
-                    successful = DueThisApplication.controller.removeAssignment(duethis.DueThisApplication.student, assignmentOnSubmit);
+                    successful = DueThisApplication.controller.removeAssignment(DueThisApplication.student, assignmentOnSubmit);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), "Can't remove assignment");
                 }

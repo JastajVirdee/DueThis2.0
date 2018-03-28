@@ -37,31 +37,31 @@ public class HoursAvailableActivity extends AppCompatActivity {
 
         // Setting text in text fields to what they currently are
         mondayField = findViewById(R.id.hoursAvailableMonTextfield);
-        mondayHours = duethis.DueThisApplication.student.getMondayAvailability();
+        mondayHours = DueThisApplication.student.getMondayAvailability();
         mondayField.setText(Tools.getFormattedString(mondayHours), TextView.BufferType.EDITABLE);
 
         tuesdayField = findViewById(R.id.hoursAvailableTueTextfield);
-        tuesdayHours = duethis.DueThisApplication.student.getTuesdayAvailability();
+        tuesdayHours = DueThisApplication.student.getTuesdayAvailability();
         tuesdayField.setText(Tools.getFormattedString(tuesdayHours), TextView.BufferType.EDITABLE);
 
         wedField = findViewById(R.id.hoursAvailableWedTextfield);
-        wedHours = duethis.DueThisApplication.student.getWednesdayAvailability();
+        wedHours = DueThisApplication.student.getWednesdayAvailability();
         wedField.setText(Tools.getFormattedString(wedHours), TextView.BufferType.EDITABLE);
 
         thurField = findViewById(R.id.hoursAvailableThurTextfield);
-        thurHours = duethis.DueThisApplication.student.getThursdayAvailability();
+        thurHours = DueThisApplication.student.getThursdayAvailability();
         thurField.setText(Tools.getFormattedString(thurHours), TextView.BufferType.EDITABLE);
 
         friField = findViewById(R.id.hoursAvailableFriTextfield);
-        friHours = duethis.DueThisApplication.student.getFridayAvailability();
+        friHours = DueThisApplication.student.getFridayAvailability();
         friField.setText(Tools.getFormattedString(friHours), TextView.BufferType.EDITABLE);
 
         satField = findViewById(R.id.hoursAvailableSatTextfield);
-        satHours = duethis.DueThisApplication.student.getSaturdayAvailability();
+        satHours = DueThisApplication.student.getSaturdayAvailability();
         satField.setText(Tools.getFormattedString(satHours), TextView.BufferType.EDITABLE);
 
         sunField = findViewById(R.id.hoursAvailableSunTextfield);
-        sunHours = duethis.DueThisApplication.student.getSundayAvailability();
+        sunHours = DueThisApplication.student.getSundayAvailability();
         sunField.setText(Tools.getFormattedString(sunHours), TextView.BufferType.EDITABLE);
 
         // Click Back
@@ -130,7 +130,7 @@ public class HoursAvailableActivity extends AppCompatActivity {
                 }
 
                 try {
-                    DueThisApplication.controller.updateAvailabilities(duethis.DueThisApplication.student, sunHours, mondayHours, tuesdayHours, wedHours, thurHours, friHours, satHours);
+                    DueThisApplication.controller.updateAvailabilities(DueThisApplication.student, sunHours, mondayHours, tuesdayHours, wedHours, thurHours, friHours, satHours);
                     startActivity(new Intent(HoursAvailableActivity.this, MainActivity.class));
                 } catch (controller.InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());

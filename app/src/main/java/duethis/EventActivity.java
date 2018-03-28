@@ -53,9 +53,10 @@ public class EventActivity extends AppCompatActivity implements DatePickerDialog
 
                 boolean successful = false;
                 try {
-                    successful = DueThisApplication.controller.createEvent(duethis.DueThisApplication.student, name, date, startTime, endTime, repeatWeekly);
+                    successful = DueThisApplication.controller.createEvent(DueThisApplication.student, name, date, startTime, endTime, repeatWeekly);
                 } catch (InvalidInputException e) {
                     Tools.exceptionToast(getApplicationContext(), e.getMessage());
+                    return;
                 }
 
                 if (successful) {

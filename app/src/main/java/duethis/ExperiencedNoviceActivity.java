@@ -20,7 +20,7 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
         // Setting the experience by default here.
         TextView textView = findViewById(R.id.experienceStatus);
 
-        if (duethis.DueThisApplication.student.getExperienced()) {
+        if (DueThisApplication.student.getExperienced()) {
             textView.setText(Tools.getFormattedString("Experienced Student"));
         } else {
             textView.setText(Tools.getFormattedString("Novice Student"));
@@ -38,11 +38,11 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
         switch (view.getId()) {
             case R.id.radio_experienced:
                 if (checked) {
-                    if (duethis.DueThisApplication.student.getExperienced())
+                    if (DueThisApplication.student.getExperienced())
                         textView.setText(Tools.getFormattedString("You are already an experienced student."));
                     else {
                         try {
-                            DueThisApplication.controllerAccount.changeRole(duethis.DueThisApplication.student, true, 0, 0, 0, 0, 0, 0, 0);
+                            DueThisApplication.controllerAccount.changeRole(DueThisApplication.student, true, 0, 0, 0, 0, 0, 0, 0);
                             textView.setText(Tools.getFormattedString("You are now an experienced student."));
                         } catch (InvalidInputException e) {
                             System.out.println(e.getMessage());
@@ -54,11 +54,11 @@ public class ExperiencedNoviceActivity extends AppCompatActivity {
                 break;
             case R.id.radio_novice:
                 if (checked) {
-                    if (!duethis.DueThisApplication.student.getExperienced())
+                    if (!DueThisApplication.student.getExperienced())
                         textView.setText(Tools.getFormattedString("You are already a novice student."));
                     else {
                         try {
-                            DueThisApplication.controllerAccount.changeRole(duethis.DueThisApplication.student, false, 0, 0, 0, 0, 0, 0, 0);
+                            DueThisApplication.controllerAccount.changeRole(DueThisApplication.student, false, 0, 0, 0, 0, 0, 0, 0);
                             textView.setText(Tools.getFormattedString("You are now a novice student."));
                         } catch (InvalidInputException e) {
                             System.out.println(e.getMessage());
