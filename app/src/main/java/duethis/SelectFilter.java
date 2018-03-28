@@ -56,8 +56,8 @@ public class SelectFilter extends AppCompatActivity implements DatePickerDialog.
         });
 
         // Complete Assignments
-        Button completeAssignmentButton = findViewById(R.id.completedAssignmentButton);
-        completeAssignmentButton.setOnClickListener(new View.OnClickListener() {
+        Button completedAssignmentButton = findViewById(R.id.completedAssignmentButton);
+        completedAssignmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SelectFilter.this, ViewAssignmentList.class);
