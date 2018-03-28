@@ -44,8 +44,12 @@ public class ViewAssignmentList extends AppCompatActivity {
         Intent parameters = getIntent();
         boolean all_students = parameters.getBooleanExtra("all_students", false);
         boolean by_course = parameters.getBooleanExtra("by_course", false);
+        boolean incomplete = parameters.getBooleanExtra("incomplete", false);
+        boolean completed = parameters.getBooleanExtra("completed", false);
         long date = parameters.getLongExtra("date", 0);
-        boolean incomplete = getIntent().getExtras().getBoolean("incomplete");
+
+        //incomplete = getIntent().getExtras().getBoolean("incomplete");
+        //completed = getIntent().getExtras().getBoolean("completed");
 
 
         Student student = DueThisApplication.student;
@@ -68,6 +72,12 @@ public class ViewAssignmentList extends AppCompatActivity {
             try {
                 assignments = DueThisApplication.controller.showFilteredByIncompleted(student);
             } catch (InvalidInputException e) {
+                Tools.exceptionToast(getApplicationContext(), e.getMessage());
+            }
+        } else if(completed){
+            try{
+                assignments = DueThisApplication.controller.showFilteredByCompleted(student);
+            } catch (InvalidInputException e){
                 Tools.exceptionToast(getApplicationContext(), e.getMessage());
             }
         }

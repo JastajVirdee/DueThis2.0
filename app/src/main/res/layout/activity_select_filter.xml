@@ -10,65 +10,79 @@
     <Button
         android:id="@+id/allAssignmentButton"
         android:layout_width="0dp"
-        android:layout_height="63dp"
-        android:layout_marginBottom="30dp"
-        android:layout_marginEnd="35dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="21dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
         android:text="All Assignments"
-        app:layout_constraintBottom_toTopOf="@+id/courseAssignmentButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/courseNameTextField"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Enter course name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="@+id/courseAssignmentButton"
         app:layout_constraintEnd_toStartOf="@+id/courseAssignmentButton"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/allAssignmentButton" />
 
     <Button
         android:id="@+id/courseAssignmentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="99dp"
-        android:layout_marginEnd="19dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
         android:text="Filter"
-        app:layout_constraintBottom_toTopOf="@+id/incompleteAssignmentButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/courseNameTextField"
         app:layout_constraintTop_toBottomOf="@+id/allAssignmentButton" />
 
     <Button
         android:id="@+id/dateAssignmentButton"
-        android:layout_width="313dp"
+        android:layout_width="0dp"
         android:layout_height="47dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:onClick="showDatePickerDialog"
         android:text="Assignments by Day"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/courseNameTextField" />
 
     <Button
         android:id="@+id/incompleteAssignmentButton"
-        android:layout_width="307dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="181dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="Incomplete Assignments"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dateAssignmentButton" />
+
+    <Button
+        android:id="@+id/completedAssignmentButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Completed Assignments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/incompleteAssignmentButton" />
 
 </android.support.constraint.ConstraintLayout>
